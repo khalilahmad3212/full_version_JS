@@ -157,9 +157,9 @@ export default function Router() {
         { path: 'programs/new', element: <AddProgram /> },
         { path: 'programs/:id/edit', element: <AddProgram /> },
         // Experience
-        { path: 'experience', element: <ProgramList /> },
+        { path: 'experience', element: <ExperienceList /> },
         { path: 'experience/new', element: <AddExperience /> },
-        { path: 'experience/:id/edit', element: <AddProgram /> },
+        { path: 'experience/:id/edit', element: <AddExperience /> },
         {
           path: 'mail',
           children: [
@@ -266,6 +266,7 @@ const ProgramList = Loadable(lazy(() => import('../pages/dashboard/program/Progr
 const AddProgram = Loadable(lazy(() => import('../pages/dashboard/program/AddProgram')));
 // Experiences
 const AddExperience = Loadable(lazy(() => import('../pages/dashboard/experience/AddExperience')));
+const ExperienceList = Loadable(lazy(() => import('../pages/dashboard/experience/ExperienceList')));
 // Main
 const LandingPage = Loadable(lazy(() => import('../pages/LandingPage')));
 const About = Loadable(lazy(() => import('../pages/About')));

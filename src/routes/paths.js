@@ -65,7 +65,7 @@ export const PATH_DASHBOARD = {
   newProgram: path(ROOTS_DASHBOARD, '/programs/new'),
   // Experience
   experience: path(ROOTS_DASHBOARD, '/experience'),
-  newExperience: path(ROOTS_DASHBOARD, '/programs/new'),
+  newExperience: path(ROOTS_DASHBOARD, '/experience/new'),
   kanban: path(ROOTS_DASHBOARD, '/kanban'),
   user: {
     root: path(ROOTS_DASHBOARD, '/user'),

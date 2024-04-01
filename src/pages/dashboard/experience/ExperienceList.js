@@ -23,7 +23,7 @@ import {
 } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from '../../../redux/store';
-import { deleteProgram, getProgram, getPrograms } from '../../../redux/slices/program';
+import { deleteExperience, getExperiences } from '../../../redux/slices/experience';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
@@ -34,7 +34,7 @@ import Label from '../../../components/Label';
 import Scrollbar from '../../../components/Scrollbar';
 import SearchNotFound from '../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
-import { OrganizationMoreMenu, ProgramMoreMenu } from '../../../components/_dashboard/home/product-list';
+import { ExperienceMoreMenu } from '../../../components/_dashboard/home/product-list';
 
 // ----------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ export default function ExperienceList() {
   const theme = useTheme();
   const dispatch = useDispatch();
   // const { products } = useSelector((state) => state.product);
-  const { programs: products } = useSelector((state) => state.program);
+  const { experiences: products } = useSelector((state) => state.experience);
 
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
@@ -104,7 +104,7 @@ export default function ExperienceList() {
   const [orderBy, setOrderBy] = useState('createdAt');
 
   useEffect(async () => {
-    dispatch(getPrograms());
+    dispatch(getExperiences());
   }, [dispatch]);
 
   const handleRequestSort = (event, property) => {
@@ -151,7 +151,7 @@ export default function ExperienceList() {
   };
 
   const handleDeleteProduct = (publicationId) => {
-    dispatch(deleteProgram(publicationId));
+    dispatch(deleteExperience(publicationId));
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - products.length) : 0;
@@ -164,16 +164,16 @@ export default function ExperienceList() {
     <Page title="Ecommerce: Product List | Minimal-UI">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <Typography variant="h4" gutterBottom>
-          Departments
+          Eperiences
         </Typography>
         <Box py={2} textAlign="end">
           <Button
             variant="contained"
             component={RouterLink}
-            to={PATH_DASHBOARD.newOrganizations}
+            to={PATH_DASHBOARD.newExperience}
             startIcon={<Icon icon={plusFill} />}
           >
-            New Organization
+            Add Experience
           </Button>
         </Box>
         <Card>
@@ -182,7 +182,7 @@ export default function ExperienceList() {
               <Table>
                 <TableBody>
                   {filteredProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { Id, Name, Link, Coordinator } = row;
+                    const { Id, Position, Organization, StartDate, EndDate } = row;
 
                     const isItemSelected = selected.indexOf(Id) !== -1;
 
@@ -209,14 +209,15 @@ export default function ExperienceList() {
                           >
                             {/* <ThumbImgStyle alt={Name} src={`http://localhost:5001/organization-images/${Image}`} /> */}
                             <Typography variant="subtitle2" noWrap>
-                              {Name}
+                              {Position}
                             </Typography>
                           </Box>
                         </TableCell>
-                        <TableCell style={{ minWidth: 160 }}>{Link}</TableCell>
-                        <TableCell style={{ minWidth: 160 }}>{Coordinator}</TableCell>
+                        <TableCell style={{ minWidth: 160 }}>{Organization}</TableCell>
+                        <TableCell style={{ minWidth: 160 }}>{StartDate}</TableCell>
+                        <TableCell style={{ minWidth: 160 }}>{EndDate}</TableCell>
                         <TableCell align="right">
-                          <ProgramMoreMenu onDelete={() => handleDeleteProduct(Id)} productName={Id} />
+                          <ExperienceMoreMenu onDelete={() => handleDeleteProduct(Id)} productName={Id} />
                         </TableCell>
                       </TableRow>
                     );
@@ -241,16 +242,6 @@ export default function ExperienceList() {
               </Table>
             </TableContainer>
           </Scrollbar>
-
-          {/* <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={products.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          /> */}
         </Card>
       </Container>
     </Page>

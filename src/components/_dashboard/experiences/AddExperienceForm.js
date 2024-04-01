@@ -1,9 +1,10 @@
 import * as Yup from 'yup';
 import { useSnackbar } from 'notistack';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
-import { LoadingButton, MobileDateTimePicker } from '@mui/lab';
+import { LoadingButton, LocalizationProvider, MobileDateTimePicker } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { styled } from '@mui/material/styles';
 import { Card, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
@@ -39,16 +40,16 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
 
   const NewBlogSchema = Yup.object().shape({
     Position: Yup.string().required('Position is required'),
-    StartDate: Yup.date().required('Start Date is required').max(new Date(), "You can't start in future!"),
-    EndDate: Yup.date().required('End Date is required').max(new Date(), "You can't end in future!"),
+    // StartDate: Yup.date().required('Start Date is required').max(new Date(), "You can't start in future!"),
+    // EndDate: Yup.date().required('End Date is required').max(new Date(), "You can't end in future!"),
     Organization: Yup.string().required('Organization is required')
   });
 
   const formik = useFormik({
     initialValues: {
       Position: currentSlider?.Position || '',
-      StartDate: currentSlider?.StartDate || '',
-      EndDate: currentSlider?.EndDate || '',
+      // StartDate: currentSlider?.StartDate || '',
+      // EndDate: currentSlider?.EndDate || '',
       Organization: currentSlider?.Organization || ''
     },
     validationSchema: NewBlogSchema,
@@ -56,6 +57,9 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
       const temp = { ...values };
       delete temp.file;
       delete temp.Image;
+
+      temp.StartDate = new Date();
+      temp.EndDate = new Date();
 
       try {
         if (!isEdit) {
@@ -75,6 +79,7 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
   });
 
   const { errors, values, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps } = formik;
+  // write a function to fetch data
 
   return (
     <>
@@ -100,21 +105,38 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
                     helperText={touched.Organization && errors.Organization}
                   />
 
-                  <MobileDateTimePicker
+                  <TextField
+                    fullWidth
                     label="Start Date"
-                    value={values.StartDate}
-                    inputFormat="dd/MM/yyyy"
-                    onChange={(date) => setFieldValue('StartDate', date)}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
+                    {...getFieldProps('StartDate')}
+                    error={Boolean(touched.StartDate && errors.StartDate)}
+                    helperText={touched.StartDate && errors.StartDate}
                   />
 
-                  <MobileDateTimePicker
+                  <TextField
+                    fullWidth
                     label="End Date"
-                    value={values.EndDate}
-                    inputFormat="dd/MM/yyyy"
-                    onChange={(date) => setFieldValue('EndDate', date)}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
+                    {...getFieldProps('EndDate')}
+                    error={Boolean(touched.EndDate && errors.EndDate)}
+                    helperText={touched.EndDate && errors.EndDate}
                   />
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <MobileDateTimePicker
+                      label="Start Date"
+                      value={values.StartDate}
+                      inputFormat="dd/MM/yyyy"
+                      onChange={(date) => setFieldValue('StartDate', date)}
+                      renderInput={(params) => <TextField {...params} fullWidth />}
+                    />
+
+                    <MobileDateTimePicker
+                      label="End Date"
+                      value={values.EndDate}
+                      inputFormat="dd/MM/yyyy"
+                      onChange={(date) => setFieldValue('EndDate', date)}
+                      renderInput={(params) => <TextField {...params} fullWidth />}
+                    />
+                  </LocalizationProvider>
                 </Stack>
               </Card>
             </Grid>
@@ -185,7 +207,7 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
 
               <Stack direction="row" justifyContent="flex-end" sx={{ mt: 3 }}>
                 <LoadingButton type="submit" fullWidth variant="contained" size="large" loading={isSubmitting}>
-                  {!isEdit ? 'Create Slider' : 'Save Changes'}
+                  {!isEdit ? 'Add Experience' : 'Save Changes'}
                 </LoadingButton>
               </Stack>
             </Grid>

@@ -32,11 +32,11 @@ export default function AddExperience() {
     <Page title="Home: New Slider Item | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Add New Expeienec"
+          heading="Add New Expeience"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             { name: 'Home', href: PATH_DASHBOARD.home.root },
-            { name: !isEdit ? 'New Experience' : slider?.Title }
+            { name: !isEdit ? 'New Experience' : slider?.Position }
           ]}
         />
 
