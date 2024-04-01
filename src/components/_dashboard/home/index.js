@@ -1,0 +1,10 @@
+export { default as AddSliderItemForm } from './AddSliderItemForm';
+export { default as AddSliderItemPreview } from './AddSliderItemPreview';
+export { default as UpdateHomeAboutForm } from './UpdateHomeAboutForm';
+export { default as UpdateHomeMissionForm } from './UpdateHomeMissionForm';
+export { default as UpdateHomeHistoryForm } from './UpdateHomeHistoryForm';
+export { default as UpdateHomeCampusInfoForm } from './UpdateHomeCampusInfoForm';
+export { default as AddDepartmentItemForm } from './AddDepartmentItemForm';
+export { default as UpdateHomeAdmissionForm } from './UpdateHomeAdmissionForm';
+export { default as AddHowToApplyItemForm } from './AddHowToApplyItemForm';
+export { default as UpdateHomeScholarshipForm } from './UpdateHomeScholarshipForm';
