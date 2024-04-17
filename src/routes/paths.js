@@ -66,6 +66,29 @@ export const PATH_DASHBOARD = {
   // Experience
   experience: path(ROOTS_DASHBOARD, '/experience'),
   newExperience: path(ROOTS_DASHBOARD, '/experience/new'),
+  // Experience
+  recognition: path(ROOTS_DASHBOARD, '/recognition'),
+  newRecognition: path(ROOTS_DASHBOARD, '/recognition/new'),
+  // Education
+  education: path(ROOTS_DASHBOARD, '/education'),
+  newEducation: path(ROOTS_DASHBOARD, '/education/new'),
+  // News
+  news: path(ROOTS_DASHBOARD, '/news'),
+  newNews: path(ROOTS_DASHBOARD, '/news/new'),
+  // Announcements
+  announcements: path(ROOTS_DASHBOARD, '/announcement'),
+  newAnnouncements: path(ROOTS_DASHBOARD, '/announcement/new'),
+  // Gallery
+  gallery: path(ROOTS_DASHBOARD, '/gallery'),
+  newGallery: path(ROOTS_DASHBOARD, '/gallery/new'),
+  // Resource
+  resource: path(ROOTS_DASHBOARD, '/resource'),
+  newResource: path(ROOTS_DASHBOARD, '/resource/new'),
+  // Skills
+  skills: path(ROOTS_DASHBOARD, '/skills'),
+  // Semester
+  semester: path(ROOTS_DASHBOARD, '/semester'),
+  newSemester: path(ROOTS_DASHBOARD, '/semester/new'),
   kanban: path(ROOTS_DASHBOARD, '/kanban'),
   user: {
     root: path(ROOTS_DASHBOARD, '/user'),
@@ -108,6 +131,72 @@ export const PATH_DASHBOARD = {
     howToApply: path(ROOTS_DASHBOARD, '/home/how-to-apply'),
     newHowToApply: path(ROOTS_DASHBOARD, '/home/how-to-apply/new'),
     scholarship: path(ROOTS_DASHBOARD, '/home/scholarship')
+  },
+  about: {
+    root: path(ROOTS_DASHBOARD, '/about'),
+    banner: path(ROOTS_DASHBOARD, '/about/banner'),
+    admissionParas: path(ROOTS_DASHBOARD, '/about/admission-paras'),
+    gallery: path(ROOTS_DASHBOARD, '/about/gallery')
+  },
+  campus: {
+    root: path(ROOTS_DASHBOARD, '/campus'),
+    banner: path(ROOTS_DASHBOARD, '/campus/banner')
+  },
+  mission: {
+    root: path(ROOTS_DASHBOARD, '/mission'),
+    banner: path(ROOTS_DASHBOARD, '/mission/banner')
+  },
+  founder: {
+    root: path(ROOTS_DASHBOARD, '/founder'),
+    banner: path(ROOTS_DASHBOARD, '/founder/banner')
+  },
+  history: {
+    root: path(ROOTS_DASHBOARD, '/history'),
+    banner: path(ROOTS_DASHBOARD, '/history/banner')
+  },
+  faculty: {
+    root: path(ROOTS_DASHBOARD, '/faculty'),
+    banner: path(ROOTS_DASHBOARD, '/faculty/banner')
+  },
+  admission: {
+    root: path(ROOTS_DASHBOARD, '/admission'),
+    banner: path(ROOTS_DASHBOARD, '/admission/banner')
+  },
+  howToApply: {
+    root: path(ROOTS_DASHBOARD, '/how-to-apply'),
+    banner: path(ROOTS_DASHBOARD, '/how-to-apply/banner')
+  },
+  tuitionFees: {
+    root: path(ROOTS_DASHBOARD, '/tuition-fees'),
+    banner: path(ROOTS_DASHBOARD, '/tuition-fees/banner')
+  },
+  financialAid: {
+    root: path(ROOTS_DASHBOARD, '/financial-aid'),
+    banner: path(ROOTS_DASHBOARD, '/financial-aid/banner')
+  },
+  datesDeadLines: {
+    root: path(ROOTS_DASHBOARD, '/dates-deadlines'),
+    banner: path(ROOTS_DASHBOARD, '/dates-deadlines/banner')
+  },
+  academics: {
+    root: path(ROOTS_DASHBOARD, '/academics'),
+    banner: path(ROOTS_DASHBOARD, '/academics/banner')
+  },
+  underGraduate: {
+    root: path(ROOTS_DASHBOARD, '/under-graduate'),
+    banner: path(ROOTS_DASHBOARD, '/under-graduate/banner')
+  },
+  graduate: {
+    root: path(ROOTS_DASHBOARD, '/graduate'),
+    banner: path(ROOTS_DASHBOARD, '/graduate/banner')
+  },
+  postGraduate: {
+    root: path(ROOTS_DASHBOARD, '/post-graduate'),
+    banner: path(ROOTS_DASHBOARD, '/post-graduate/banner')
+  },
+  summerPrograms: {
+    root: path(ROOTS_DASHBOARD, '/summer-programs'),
+    banner: path(ROOTS_DASHBOARD, '/summer-programs/banner')
   }
 };
 

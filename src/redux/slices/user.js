@@ -204,8 +204,8 @@ export function updateUser(userId, formData) {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log('data: ', response.data);
-      dispatch(slice.actions.getProfileSuccess(response.data));
+      console.log('updated data: ', response.data);
+      // dispatch(slice.actions.getProfileSuccess(response.data));
     } catch (error) {
       console.log('Error: ', error);
       dispatch(slice.actions.hasError(error));

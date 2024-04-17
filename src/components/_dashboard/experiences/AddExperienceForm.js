@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router';
 //
 import { createExperience, updateExperience } from '../../../redux/slices/experience';
 import { PATH_DASHBOARD } from '../../../routes/paths';
-
 // ----------------------------------------------------------------------
 
 const LabelStyle = styled(Typography)(({ theme }) => ({

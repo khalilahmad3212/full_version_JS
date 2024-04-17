@@ -1,14 +1,17 @@
 import axios from 'axios';
 
 const SERVER = 'http://localhost:5001';
+
+// ----------------------------------------
 export const getValueByKey = async (key) => {
   const result = await fetch(`${SERVER}/map-resources/key/${key}`);
-  console.log('check: ', result);
-  // alert('check')
+  console.log('result: ', result);
   try {
     const json = await result.json();
+
     return json;
   } catch (error) {
+    console.log('error: ', error);
     return false;
   }
 };
@@ -44,7 +47,7 @@ export const uploadFile = async (formData) => {
 
 export const deleteFile = async (filename, id) => {
   try {
-    const deleteUrl = `http://localhost:5001/file-data/${filename}/${id}`;
+    const deleteUrl = `${SERVER}/file-data/${filename}/${id}`;
     const deleteResponse = await axios.delete(deleteUrl);
     console.log('Image deleted successfuly: ', deleteResponse);
     return deleteResponse.data;

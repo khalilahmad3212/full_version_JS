@@ -68,7 +68,8 @@ export default function DashboardNavbar({ onOpenSidebar }) {
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
-          <LanguagePopover />
+          {/* TODO: Does we need the below component? */}
+          {/* <LanguagePopover /> */}
           <NotificationsPopover />
           <ContactsPopover />
           <AccountPopover />

@@ -16,7 +16,13 @@ import kanbanReducer from './slices/kanban';
 import organizationReducer from './slices/organization';
 import programReducer from './slices/program';
 import experienceReducer from './slices/experience';
-
+import recognitionReducer from './slices/recognition';
+import educationReducer from './slices/education';
+import newsReducer from './slices/news';
+import announcementReducer from './slices/announcement';
+import galleryReducer from './slices/gallery';
+import resourceReducer from './slices/resource';
+import semesterReducer from './slices/semester';
 // ----------------------------------------------------------------------
 
 const rootPersistConfig = {
@@ -47,6 +53,13 @@ const rootReducer = combineReducers({
   organization: organizationReducer,
   program: programReducer,
   experience: experienceReducer,
+  recognition: recognitionReducer,
+  education: educationReducer,
+  news: newsReducer,
+  announcement: announcementReducer,
+  gallery: galleryReducer,
+  resource: resourceReducer,
+  semester: semesterReducer,
   product: persistReducer(productPersistConfig, productReducer)
 });
 
