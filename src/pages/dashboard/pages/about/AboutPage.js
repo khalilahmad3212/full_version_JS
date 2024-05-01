@@ -28,7 +28,7 @@ export default function HomePage() {
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Admission Paras',
+      label: 'About Paragraphs',
       link: PATH_DASHBOARD.about.admissionParas,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
@@ -38,33 +38,23 @@ export default function HomePage() {
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
+      label: 'Statistics',
+      link: PATH_DASHBOARD.about.facts,
+      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+    },
+    {
       label: 'History',
-      link: PATH_DASHBOARD.home.history,
+      link: PATH_DASHBOARD.about.history,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
+      label: 'Mission & Value',
+      link: PATH_DASHBOARD.about.mission,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Video',
+      link: PATH_DASHBOARD.about.video,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];
@@ -74,16 +64,9 @@ export default function HomePage() {
   };
 
   return (
-    <Page title="User: Account Settings | Minimal-UI">
+    <Page title="About">
       <Container maxWidth={themeStretch ? false : 'lg'}>
-        <HeaderBreadcrumbs
-          heading="Account"
-          links={[
-            { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Home', href: PATH_DASHBOARD.home.root },
-            { name: 'Page Sections' }
-          ]}
-        />
+        <HeaderBreadcrumbs heading="About" />
 
         <Stack spacing={5}>
           <Tabs

@@ -18,10 +18,7 @@ export default function UpdateHomeScholarship() {
   return (
     <Page title="Home: New Slider Item | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
-        <Typography variant="h4" gutterBottom>
-          Scholarship
-        </Typography>
-
+        <HeaderBreadcrumbs heading="Scholarship" />
         <UpdateHomeScholarshipForm />
       </Container>
     </Page>

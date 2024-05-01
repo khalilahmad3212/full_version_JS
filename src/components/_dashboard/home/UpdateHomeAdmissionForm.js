@@ -59,9 +59,8 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function UpdateHomeAdmissionForm({ isEdit, currentData }) {
+export default function UpdateHomeAdmissionForm({ isEdit, data }) {
   const { enqueueSnackbar } = useSnackbar();
-  const [data, setData] = useState();
 
   const NewBlogSchema = Yup.object().shape({
     para: Yup.string().required('Description is required'),
@@ -73,11 +72,11 @@ export default function UpdateHomeAdmissionForm({ isEdit, currentData }) {
 
   const formik = useFormik({
     initialValues: {
-      heading: '',
-      para: '',
-      linkText: '',
-      link: '',
-      Image: null
+      heading: data?.value?.heading || '',
+      para: data?.value?.para || '',
+      linkText: data?.value?.linkText || '',
+      link: data?.value?.link || '',
+      Image: `http://localhost:5001/file-data-images/${data?.value?.Image}`
     },
     validationSchema: NewBlogSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
@@ -141,27 +140,6 @@ export default function UpdateHomeAdmissionForm({ isEdit, currentData }) {
     [setFieldValue]
   );
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await getValueByKey('home-admission-aid');
-        result.value = JSON.parse(result.value);
-        console.log(result);
-        const imageUrl = `http://localhost:5001/file-data-images/${result.value.Image}`;
-
-        setFieldValue('heading', result.value.heading);
-        setFieldValue('para', result.value.para);
-        setFieldValue('linkText', result.value.linkText);
-        setFieldValue('link', result.value.link);
-        setFieldValue('Image', imageUrl);
-
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-    fetchData();
-  }, []);
   return (
     <>
       <FormikProvider value={formik}>

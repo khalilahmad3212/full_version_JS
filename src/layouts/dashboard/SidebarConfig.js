@@ -133,6 +133,7 @@ const sidebarConfig = [
       { title: 'graduate', path: PATH_DASHBOARD.graduate.root, icon: ICONS.user },
       { title: 'post-graduate', path: PATH_DASHBOARD.postGraduate.root, icon: ICONS.user },
       { title: 'summer-programs', path: PATH_DASHBOARD.summerPrograms.root, icon: ICONS.user },
+      { title: 'Other', path: PATH_DASHBOARD.other.root, icon: ICONS.user },
       { title: 'publications', path: PATH_DASHBOARD.publications, icon: ICONS.calendar },
       { title: 'departments', path: PATH_DASHBOARD.departments, icon: ICONS.calendar },
       { title: 'organizations', path: PATH_DASHBOARD.organizations, icon: ICONS.calendar },

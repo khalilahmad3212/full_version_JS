@@ -52,12 +52,18 @@ export const { startLoading, hasError, getGalleriesSuccess, getGallerySuccess, d
 
 // ----------------------------------------------------------------------
 
-export function getGalleries() {
+export function getGalleries(page) {
+  console.log('page: ', page);
+
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get(`${SERVER}/gallery`);
-      console.log(response.data);
+      const response = await axios.get(`${SERVER}/gallery`, {
+        params: {
+          page
+        }
+      });
+      console.log('data: ', response.data);
       dispatch(slice.actions.getGalleriesSuccess(response.data));
     } catch (error) {
       console.log(error);

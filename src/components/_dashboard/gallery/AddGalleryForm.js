@@ -20,7 +20,7 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AddGalleryForm({ isEdit, currentProduct: currentSlider }) {
+export default function AddGalleryForm({ isEdit, currentProduct: currentSlider, page }) {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
 
@@ -48,6 +48,7 @@ export default function AddGalleryForm({ isEdit, currentProduct: currentSlider }
       });
       try {
         if (!isEdit) {
+          formData.append('Page', page);
           dispatch(createGallery(formData));
         } else {
           dispatch(updateGallery(currentSlider?.Id, formData));

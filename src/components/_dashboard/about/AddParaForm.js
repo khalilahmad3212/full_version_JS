@@ -16,8 +16,11 @@ import {
   Typography,
   Autocomplete,
   FormHelperText,
-  FormControlLabel
+  FormControlLabel,
+  IconButton,
+  Icon
 } from '@mui/material';
+import { DeleteOutline } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import axios from 'axios';
@@ -36,10 +39,8 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AddAdmissionParaForm() {
+export default function AddParaForm({ data, isEdit }) {
   const { enqueueSnackbar } = useSnackbar();
-  const [data, setData] = useState();
-  const [isEdit, setIsEdit] = useState(false);
 
   const NewBlogSchema = Yup.object().shape({
     // about: Yup.array().of(Yup.object().shape({ content: Yup.string() }))
@@ -53,7 +54,7 @@ export default function AddAdmissionParaForm() {
 
   const formik = useFormik({
     initialValues: {
-      about: []
+      about: data?.value || []
     },
     validationSchema: NewBlogSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
@@ -76,18 +77,6 @@ export default function AddAdmissionParaForm() {
 
   const { errors, values, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps } = formik;
 
-  useEffect(() => {
-    const res = getValueByKey('admission-overview-paras');
-    res.then((data) => {
-      console.log('data', data);
-      data.value = JSON.parse(data.value);
-      console.log('data', data);
-      setData(data);
-      setIsEdit(true);
-      setFieldValue('about', data?.value);
-    });
-  }, []);
-
   const handleParagraphChange = (index, event) => {
     const newParagraphs = values.about.map((paragraph, i) => {
       if (i === index) {
@@ -101,6 +90,12 @@ export default function AddAdmissionParaForm() {
   const addParagraph = () => {
     setFieldValue('about', [...values.about, '']);
   };
+
+  // Function to remove paragraph
+  const removeParagraph = (index) => {
+    const newParagraphs = values.about.filter((_, i) => i !== index);
+    setFieldValue('about', newParagraphs);
+  };
   return (
     <>
       <FormikProvider value={formik}>
@@ -110,18 +105,26 @@ export default function AddAdmissionParaForm() {
               <Card sx={{ p: 3 }}>
                 <Stack spacing={3}>
                   {values?.about.map((paragraph, index) => (
-                    <>
-                      <TextField
-                        key={index}
-                        fullWidth
-                        rows={3}
-                        multiline
-                        value={paragraph}
-                        onChange={(event) => handleParagraphChange(index, event)}
-                        label={`Paragraph ${index + 1}`}
-                        variant="outlined"
-                      />
-                    </>
+                    <div key={index}>
+                      <Stack direction="row" justifyContent="flex-end" sx={{ position: 'relative' }}>
+                        <IconButton
+                          sx={{ position: 'absolute', zIndex: 2, cursor: 'pointer' }}
+                          onClick={() => removeParagraph(index)}
+                        >
+                          <DeleteOutline />
+                        </IconButton>
+                        <TextField
+                          key={index}
+                          fullWidth
+                          rows={3}
+                          multiline
+                          value={paragraph}
+                          onChange={(event) => handleParagraphChange(index, event)}
+                          label={`Paragraph ${index + 1}`}
+                          variant="outlined"
+                        />
+                      </Stack>
+                    </div>
                   ))}
                   <FormHelperText error={Boolean(touched.about && errors.about)}>
                     {touched.about && errors.about}

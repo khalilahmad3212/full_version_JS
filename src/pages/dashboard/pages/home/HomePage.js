@@ -43,14 +43,24 @@ export default function HomePage() {
       link: PATH_DASHBOARD.home.mission,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
+    // {
+    //   label: 'History',
+    //   link: PATH_DASHBOARD.home.history,
+    //   icon: <Icon icon={roundAccountBox} width={20} height={20} />
+    // },
     {
-      label: 'History',
-      link: PATH_DASHBOARD.home.history,
+      label: 'Statistics',
+      link: PATH_DASHBOARD.home.statistics,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
       label: 'Campus Info',
       link: PATH_DASHBOARD.home.campusInfo,
+      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+    },
+    {
+      label: 'Paragraphs',
+      link: PATH_DASHBOARD.home.para,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
@@ -72,6 +82,16 @@ export default function HomePage() {
       label: 'Scholarship',
       link: PATH_DASHBOARD.home.scholarship,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
+    },
+    {
+      label: 'Sports & Activities',
+      link: PATH_DASHBOARD.home.sports,
+      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+    },
+    {
+      label: 'Tuition Fees',
+      link: PATH_DASHBOARD.home.tuitionFees,
+      icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];
 
@@ -80,10 +100,10 @@ export default function HomePage() {
   };
 
   return (
-    <Page title="User: Account Settings | Minimal-UI">
+    <Page title="Home Page | Minimal-UI">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Account"
+          heading="Home Page"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             { name: 'Home', href: PATH_DASHBOARD.home.root },

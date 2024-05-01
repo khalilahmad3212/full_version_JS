@@ -20,9 +20,8 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function UpdateHomeMissionForm() {
+export default function UpdateHomeMissionForm({ data, isEdit, label1, label2 }) {
   const { enqueueSnackbar } = useSnackbar();
-  const [data, setData] = useState();
 
   const NewBlogSchema = Yup.object().shape({
     History: Yup.string().required('History Text is required'),
@@ -31,23 +30,21 @@ export default function UpdateHomeMissionForm() {
 
   const formik = useFormik({
     initialValues: {
-      History: '',
-      Mission: ''
+      History: data?.value.History || '',
+      Mission: data?.value.Mission || ''
     },
     validationSchema: NewBlogSchema,
     onSubmit: async (values, { setSubmitting }) => {
-      const formData = {
-        key: data.key,
-        value: JSON.stringify({
-          History: values.History,
-          Mission: values.Mission
-        })
-      };
-
+      console.log('values', values);
       try {
-        await updateValueById(data.id, formData);
+        if (isEdit) {
+          const formData = { ...data };
+          formData.value = JSON.stringify(values);
+          updateValueById(data.id, formData);
+        }
+        // resetForm();
         setSubmitting(false);
-        enqueueSnackbar('Update success', { variant: 'success' });
+        enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
       } catch (error) {
         console.error(error);
         setSubmitting(false);
@@ -57,20 +54,20 @@ export default function UpdateHomeMissionForm() {
 
   const { errors, values, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps } = formik;
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await getValueByKey('home-overview');
-        const value = JSON.parse(result.value);
-        setFieldValue('History', value.History);
-        setFieldValue('Mission', value.Mission);
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const result = await getValueByKey('home-overview');
+  //       const value = JSON.parse(result.value);
+  //       setFieldValue('History', value.History);
+  //       setFieldValue('Mission', value.Mission);
+  //       setData(result);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
   return (
     <>
       <FormikProvider value={formik}>
@@ -84,7 +81,7 @@ export default function UpdateHomeMissionForm() {
                     multiline
                     minRows={3}
                     maxRows={5}
-                    label="History"
+                    label={label1 ?? 'History'}
                     {...getFieldProps('History')}
                     error={Boolean(touched.History && errors.History)}
                     helperText={touched.History && errors.History}
@@ -94,7 +91,7 @@ export default function UpdateHomeMissionForm() {
                     multiline
                     minRows={3}
                     maxRows={5}
-                    label="Mission"
+                    label={label2 ?? 'Mission'}
                     {...getFieldProps('Mission')}
                     error={Boolean(touched.Mission && errors.Mission)}
                     helperText={touched.Mission && errors.Mission}

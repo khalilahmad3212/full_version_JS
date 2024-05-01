@@ -46,14 +46,14 @@ const ThumbImgStyle = styled('img')(({ theme }) => ({
   borderRadius: theme.shape.borderRadiusSm
 }));
 
-export default function GalleryList() {
+export default function GalleryList({ data, type }) {
   const { themeStretch } = useSettings();
   const theme = useTheme();
   const dispatch = useDispatch();
   const { galleries: products } = useSelector((state) => state.gallery);
 
   useEffect(async () => {
-    dispatch(getGalleries());
+    dispatch(getGalleries(type));
   }, [dispatch]);
 
   const handleDeleteProduct = (productId) => {
@@ -65,14 +65,11 @@ export default function GalleryList() {
   return (
     <Page title="Ecommerce: Product List | Minimal-UI">
       <Container maxWidth={themeStretch ? false : 'lg'}>
-        <Typography variant="h4" gutterBottom>
-          Announcements
-        </Typography>
         <Box py={2} textAlign="end">
           <Button
             variant="contained"
             component={RouterLink}
-            to={PATH_DASHBOARD.newGallery}
+            to={`${PATH_DASHBOARD.root}/${type}/gallery/new`}
             startIcon={<Icon icon={plusFill} />}
           >
             New Gallery
@@ -106,7 +103,7 @@ export default function GalleryList() {
                         <TableCell align="right">
                           <CommonMoreMenu
                             onDelete={() => handleDeleteProduct(Id)}
-                            productName={`${PATH_DASHBOARD.gallery}/${Id}/edit`}
+                            productName={`${PATH_DASHBOARD.root}/${type}/gallery/${Id}/edit`}
                           />
                         </TableCell>
                       </TableRow>

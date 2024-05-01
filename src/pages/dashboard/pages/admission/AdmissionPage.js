@@ -23,48 +23,28 @@ export default function AdmissionPage() {
 
   const ACCOUNT_TABS = [
     {
-      label: 'About Banner',
-      link: PATH_DASHBOARD.about.banner,
+      label: 'Admission Banner',
+      link: PATH_DASHBOARD.admission.banner,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
       label: 'Admission Paras',
-      link: PATH_DASHBOARD.about.admissionParas,
+      link: PATH_DASHBOARD.admission.admissionParas,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Gallery',
-      link: PATH_DASHBOARD.about.gallery,
+      label: 'Facts',
+      link: PATH_DASHBOARD.admission.facts,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'History',
-      link: PATH_DASHBOARD.home.history,
+      label: 'First Section',
+      link: PATH_DASHBOARD.admission.first,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Second Section',
+      link: PATH_DASHBOARD.admission.second,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

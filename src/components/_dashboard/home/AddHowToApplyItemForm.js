@@ -172,8 +172,8 @@ export default function AddHowToApplyItemForm({ isEdit }) {
           if (index !== -1) {
             imageUrl = `http://localhost:5001/file-data-images/${temp.Image}`;
           }
-          setFieldValue('desc', temp.Description);
-          setFieldValue('name', temp.Name);
+          setFieldValue('desc', temp.desc);
+          setFieldValue('name', temp.name);
           setFieldValue('Image', imageUrl);
         }
         setData(result);

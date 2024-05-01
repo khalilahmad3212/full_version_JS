@@ -24,47 +24,22 @@ export default function MissionPage() {
   const ACCOUNT_TABS = [
     {
       label: 'About Banner',
-      link: PATH_DASHBOARD.about.banner,
+      link: PATH_DASHBOARD.mission.banner,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Admission Paras',
-      link: PATH_DASHBOARD.about.admissionParas,
+      label: 'Fact',
+      link: PATH_DASHBOARD.mission.facts,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Gallery',
-      link: PATH_DASHBOARD.about.gallery,
+      label: 'Vission',
+      link: PATH_DASHBOARD.mission.vission,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'History',
-      link: PATH_DASHBOARD.home.history,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Steps',
+      link: PATH_DASHBOARD.mission.steps,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

@@ -24,47 +24,22 @@ export default function FinancialAidPage() {
   const ACCOUNT_TABS = [
     {
       label: 'About Banner',
-      link: PATH_DASHBOARD.about.banner,
+      link: PATH_DASHBOARD.financialAid.banner,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Admission Paras',
-      link: PATH_DASHBOARD.about.admissionParas,
+      label: 'Financial Facts & Figures',
+      link: PATH_DASHBOARD.financialAid.facts,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Gallery',
-      link: PATH_DASHBOARD.about.gallery,
+      label: 'Financial Aid Steps',
+      link: PATH_DASHBOARD.financialAid.steps,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'History',
-      link: PATH_DASHBOARD.home.history,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Financial Aid Type',
+      link: PATH_DASHBOARD.financialAid.list,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

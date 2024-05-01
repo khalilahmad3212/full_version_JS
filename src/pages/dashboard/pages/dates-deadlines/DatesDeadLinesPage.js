@@ -24,47 +24,12 @@ export default function DatesDeadLinesPage() {
   const ACCOUNT_TABS = [
     {
       label: 'About Banner',
-      link: PATH_DASHBOARD.about.banner,
+      link: PATH_DASHBOARD.datesDeadLines.banne,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Admission Paras',
-      link: PATH_DASHBOARD.about.admissionParas,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Gallery',
-      link: PATH_DASHBOARD.about.gallery,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'History',
-      link: PATH_DASHBOARD.home.history,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Deadlines',
+      link: PATH_DASHBOARD.datesDeadLines.deadlines,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

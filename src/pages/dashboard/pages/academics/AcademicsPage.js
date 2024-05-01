@@ -24,47 +24,32 @@ export default function AcademicsPage() {
   const ACCOUNT_TABS = [
     {
       label: 'About Banner',
-      link: PATH_DASHBOARD.about.banner,
+      link: PATH_DASHBOARD.academics.banner,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Admission Paras',
-      link: PATH_DASHBOARD.about.admissionParas,
+      label: 'Academic History',
+      link: PATH_DASHBOARD.academics.academicHistory,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
       label: 'Gallery',
-      link: PATH_DASHBOARD.about.gallery,
+      link: PATH_DASHBOARD.academics.academicGallery,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'History',
-      link: PATH_DASHBOARD.home.history,
+      label: 'Overview',
+      link: PATH_DASHBOARD.academics.academicOverview,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
+      label: 'Study Areas',
+      link: PATH_DASHBOARD.academics.academicStudyAreas,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Mission',
+      link: PATH_DASHBOARD.academics.mission,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

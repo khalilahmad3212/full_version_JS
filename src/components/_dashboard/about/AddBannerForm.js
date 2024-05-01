@@ -109,26 +109,6 @@ export default function AddBannerForm({ data, isEdit }) {
     [setFieldValue]
   );
 
-  // useEffect(() => {
-  //   if (key) {
-  //     const res = getValueByKey(key);
-
-  //     res
-  //       .then((data) => {
-  //         console.log('dataOut: ', data);
-  //         data.value = JSON.parse(data.value);
-  //         setData(data);
-  //         setIsEdit(true);
-  //         setFieldValue('title', data.value.title);
-  //         setFieldValue('description', data.value.description);
-  //         setFieldValue('Image', `http://localhost:5001/file-data-images/${data.value.Image}`);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         setIsEdit(false);
-  //       });
-  //   }
-  // }, []);
   return (
     <>
       <FormikProvider value={formik}>

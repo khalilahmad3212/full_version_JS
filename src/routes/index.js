@@ -129,6 +129,7 @@ export default function Router() {
             { path: 'about', element: <UpdateHomeAbout /> },
             { path: 'mission', element: <UpdateHomeMission /> },
             { path: 'history', element: <UpdateHomeHistory /> },
+            { path: 'statistics', element: <AddHomeFacts /> },
             { path: 'campus-info', element: <UpdateHomeCampusInfo /> },
             { path: 'department', element: <DepartmentItemsList /> },
             { path: 'department/new', element: <AddDepartmentItem /> },
@@ -137,7 +138,10 @@ export default function Router() {
             { path: 'how-to-apply', element: <HowToApplyItemList /> },
             { path: 'how-to-apply/new', element: <AddHowToApplyItem /> },
             { path: 'how-to-apply/:id/edit', element: <AddHowToApplyItem /> },
-            { path: 'scholarship', element: <UpdateHomeScholarship /> }
+            { path: 'scholarship', element: <UpdateHomeScholarship /> },
+            { path: 'sports', element: <AddHomeSports /> },
+            { path: 'tuition-fees', element: <AddHomeTuition /> },
+            { path: 'para', element: <AddHomeProgramsPara /> }
           ]
         },
         {
@@ -146,8 +150,14 @@ export default function Router() {
           children: [
             { element: <Navigate to="/dashboard/about/banner" replace /> },
             { path: 'banner', element: <AddAboutBanner /> },
-            { path: 'admission-paras', element: <AddAdmissionPara /> },
-            { path: 'gallery', element: <AddAboutGallery /> }
+            { path: 'admission-paras', element: <AddAboutPara /> },
+            { path: 'gallery', element: <AboutGalleryList /> },
+            { path: 'gallery/new', element: <AddAboutGallery /> },
+            { path: 'gallery/:id/edit', element: <AddAboutGallery /> },
+            { path: 'facts', element: <AddAboutFacts /> },
+            { path: 'history', element: <AddAboutHistory /> },
+            { path: 'mission', element: <AddAboutMission /> },
+            { path: 'video', element: <AddAboutVideo /> }
           ]
         },
         {
@@ -155,7 +165,15 @@ export default function Router() {
           element: <CampusPage />,
           children: [
             { element: <Navigate to="/dashboard/campus/banner" replace /> },
-            { path: 'banner', element: <AddCampusBanner /> }
+            { path: 'banner', element: <AddCampusBanner /> },
+            { path: 'paras', element: <AddCampusPara /> },
+            { path: 'gallery', element: <CampusGalleryList /> },
+            { path: 'gallery/new', element: <AddCampusGallery /> },
+            { path: 'gallery/:id/edit', element: <AddCampusGallery /> },
+            { path: 'video', element: <AddCampusVideo /> },
+            { path: 'info', element: <AddCampusInfo /> },
+            { path: 'hours', element: <AddCampusHours /> },
+            { path: 'map', element: <AddCampusMap /> }
           ]
         },
         {
@@ -163,7 +181,10 @@ export default function Router() {
           element: <MissionPage />,
           children: [
             { element: <Navigate to="/dashboard/mission/banner" replace /> },
-            { path: 'banner', element: <AddMissionBanner /> }
+            { path: 'banner', element: <AddMissionBanner /> },
+            { path: 'facts', element: <AddMissionFacts /> },
+            { path: 'vission', element: <AddMissionVission /> },
+            { path: 'steps', element: <AddMissionSteps /> }
           ]
         },
         {
@@ -195,7 +216,11 @@ export default function Router() {
           element: <AdmissionPage />,
           children: [
             { element: <Navigate to="/dashboard/admission/banner" replace /> },
-            { path: 'banner', element: <AddAdmissionBanner /> }
+            { path: 'banner', element: <AddAdmissionBanner /> },
+            { path: 'paras', element: <AddAdmissionPara /> },
+            { path: 'facts', element: <AddAdmissionFacts /> },
+            { path: 'first', element: <AddAdmissionFirst /> },
+            { path: 'second', element: <AddAdmissionSecond /> }
           ]
         },
         {
@@ -203,7 +228,10 @@ export default function Router() {
           element: <HowToApplyPage />,
           children: [
             { element: <Navigate to="/dashboard/how-to-apply/banner" replace /> },
-            { path: 'banner', element: <AddHowToApplyBanner /> }
+            { path: 'banner', element: <AddHowToApplyBanner /> },
+            { path: 'paras', element: <AddApplyPara /> },
+            { path: 'process', element: <AddApplyProcess /> },
+            { path: 'requirements', element: <AddApplyRequirements /> }
           ]
         },
         {
@@ -211,7 +239,10 @@ export default function Router() {
           element: <TuitionFeesPage />,
           children: [
             { element: <Navigate to="/dashboard/tuition-fees/banner" replace /> },
-            { path: 'banner', element: <AddTuitionFeesBanner /> }
+            { path: 'banner', element: <AddTuitionFeesBanner /> },
+            { path: 'graduate', element: <AddGraduateFee /> },
+            { path: 'under-graduate', element: <AddUnderGraduateFee /> },
+            { path: 'post-graduate', element: <AddPostGraduateFee /> }
           ]
         },
         {
@@ -219,7 +250,12 @@ export default function Router() {
           element: <FinancialAidPage />,
           children: [
             { element: <Navigate to="/dashboard/financial-aid/banner" replace /> },
-            { path: 'banner', element: <AddFinancialAidBanner /> }
+            { path: 'banner', element: <AddFinancialAidBanner /> },
+            { path: 'facts', element: <AddFinancialFacts /> },
+            { path: 'steps', element: <AddFinancialSteps /> },
+            { path: 'aid/new', element: <AddFinancialAid /> },
+            { path: 'aid/:id/edit', element: <AddFinancialAid /> },
+            { path: 'list', element: <ListFinancialAid /> }
           ]
         },
         {
@@ -227,7 +263,8 @@ export default function Router() {
           element: <DatesDeadLinesPage />,
           children: [
             { element: <Navigate to="/dashboard/dates-deadlines/banner" replace /> },
-            { path: 'banner', element: <AddDatesDeadLinesBanner /> }
+            { path: 'banner', element: <AddDatesDeadLinesBanner /> },
+            { path: 'deadlines', element: <AddDeadLines /> }
           ]
         },
         {
@@ -235,7 +272,14 @@ export default function Router() {
           element: <AcademicsPage />,
           children: [
             { element: <Navigate to="/dashboard/academics/banner" replace /> },
-            { path: 'banner', element: <AddAcademicsBanner /> }
+            { path: 'banner', element: <AddAcademicsBanner /> },
+            { path: 'academic-history', element: <AddAcademicHistory /> },
+            { path: 'gallery', element: <AcademicGalleryList /> },
+            { path: 'gallery/new', element: <AddAcademicGallery /> },
+            { path: 'gallery/:id/edit', element: <AddAcademicGallery /> },
+            { path: 'overview', element: <AddAcademicOverview /> },
+            { path: 'study-areas', element: <AddAcademicStudyAreas /> },
+            { path: 'mission', element: <AddAcademicMission /> }
           ]
         },
         {
@@ -243,7 +287,8 @@ export default function Router() {
           element: <UnderGraduatePage />,
           children: [
             { element: <Navigate to="/dashboard/under-graduate/banner" replace /> },
-            { path: 'banner', element: <AddUnderGraduateBanner /> }
+            { path: 'banner', element: <AddUnderGraduateBanner /> },
+            { path: 'history', element: <AddUnderGraduateHistory /> }
           ]
         },
         {
@@ -251,7 +296,9 @@ export default function Router() {
           element: <GraduatePage />,
           children: [
             { element: <Navigate to="/dashboard/graduate/banner" replace /> },
-            { path: 'banner', element: <AddGraduateBanner /> }
+            { path: 'banner', element: <AddGraduateBanner /> },
+            { path: 'history', element: <AddGraduateHistory /> },
+            { path: 'departments', element: <AddGraduateDepartments /> }
           ]
         },
         {
@@ -259,7 +306,9 @@ export default function Router() {
           element: <PostGraduatePage />,
           children: [
             { element: <Navigate to="/dashboard/post-graduate/banner" replace /> },
-            { path: 'banner', element: <AddPostGraduateBanner /> }
+            { path: 'banner', element: <AddPostGraduateBanner /> },
+            { path: 'history', element: <AddPostGraduateHistory /> },
+            { path: 'departments', element: <AddPostGraduateDepartments /> }
           ]
         },
         {
@@ -268,6 +317,18 @@ export default function Router() {
           children: [
             { element: <Navigate to="/dashboard/summer-programs/banner" replace /> },
             { path: 'banner', element: <AddSummerProgramsBanner /> }
+          ]
+        },
+        {
+          path: 'other',
+          element: <OtherPage />,
+          children: [
+            { element: <Navigate to="/dashboard/other/header" replace /> },
+            // with header route
+            { path: 'header', element: <AddOtherHeader /> },
+            { path: 'footer', element: <AddOtherFooter /> },
+            { path: 'add-page', element: <AddPage /> },
+            { path: 'add-page/:id/edit', element: <AddPage /> }
           ]
         },
         // PUblications
@@ -308,7 +369,7 @@ export default function Router() {
         { path: 'announcement/:id/edit', element: <AddAnnouncement /> },
         // Gallery
         { path: 'gallery', element: <GalleryList /> },
-        { path: 'gallery/new', element: <AddGallery /> },
+        { path: 'gallery/new/:page', element: <AddGallery /> },
         { path: 'gallery/:id/edit', element: <AddGallery /> },
         // Resource
         { path: 'resource', element: <ResourceList /> },
@@ -396,6 +457,7 @@ const SliderItemsList = Loadable(lazy(() => import('../pages/dashboard/pages/hom
 const UpdateHomeAbout = Loadable(lazy(() => import('../pages/dashboard/pages/home/UpdateHomeAbout')));
 const UpdateHomeMission = Loadable(lazy(() => import('../pages/dashboard/pages/home/UpdateHomeMission')));
 const UpdateHomeHistory = Loadable(lazy(() => import('../pages/dashboard/pages/home/UpdateHomeHistory')));
+const AddHomeFacts = Loadable(lazy(() => import('../pages/dashboard/pages/home/AddHomeFacts')));
 const UpdateHomeCampusInfo = Loadable(lazy(() => import('../pages/dashboard/pages/home/UpdateHomeCampusInfo')));
 const DepartmentItemsList = Loadable(lazy(() => import('../pages/dashboard/pages/home/DepartmentItemsList')));
 const AddDepartmentItem = Loadable(lazy(() => import('../pages/dashboard/pages/home/AddDepartmentItem')));
@@ -403,17 +465,35 @@ const UpdateHomeAdmission = Loadable(lazy(() => import('../pages/dashboard/pages
 const HowToApplyItemList = Loadable(lazy(() => import('../pages/dashboard/pages/home/HowToApplyItemList')));
 const AddHowToApplyItem = Loadable(lazy(() => import('../pages/dashboard/pages/home/AddHowToApplyItem')));
 const UpdateHomeScholarship = Loadable(lazy(() => import('../pages/dashboard/pages/home/UpdateHomeScholarship')));
+const AddHomeSports = Loadable(lazy(() => import('../pages/dashboard/pages/home/AddHomeSports')));
+const AddHomeTuition = Loadable(lazy(() => import('../pages/dashboard/pages/home/AddHomeTuition')));
+const AddHomeProgramsPara = Loadable(lazy(() => import('../pages/dashboard/pages/home/AddHomeProgramsPara')));
 // About Page Sections
 const AboutPage = Loadable(lazy(() => import('../pages/dashboard/pages/about/AboutPage')));
 const AddAboutBanner = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAboutBanner')));
-const AddAdmissionPara = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAdmissionPara')));
+const AddAboutPara = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAboutPara')));
+const AboutGalleryList = Loadable(lazy(() => import('../pages/dashboard/pages/about/AboutGalleryList')));
 const AddAboutGallery = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAboutGallery')));
+const AddAboutFacts = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAboutFacts')));
+const AddAboutHistory = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAboutHistory')));
+const AddAboutMission = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAboutMission')));
 // Campus Page Sections
 const CampusPage = Loadable(lazy(() => import('../pages/dashboard/pages/campus/CampusPage')));
 const AddCampusBanner = Loadable(lazy(() => import('../pages/dashboard/pages/campus/AddCampusBanner')));
+const AddCampusPara = Loadable(lazy(() => import('../pages/dashboard/pages/campus/AddCampusPara')));
+const CampusGalleryList = Loadable(lazy(() => import('../pages/dashboard/pages/campus/CampusGalleryList')));
+const AddCampusGallery = Loadable(lazy(() => import('../pages/dashboard/pages/campus/AddCampusGallery')));
+const AddAboutVideo = Loadable(lazy(() => import('../pages/dashboard/pages/about/AddAboutVideo')));
+const AddCampusVideo = Loadable(lazy(() => import('../pages/dashboard/pages/campus/AddCampusVideo')));
+const AddCampusInfo = Loadable(lazy(() => import('../pages/dashboard/pages/campus/AddCampusInfo')));
+const AddCampusHours = Loadable(lazy(() => import('../pages/dashboard/pages/campus/AddCampusHours')));
+const AddCampusMap = Loadable(lazy(() => import('../pages/dashboard/pages/campus/AddCampusMap')));
 // Mission Page Sections
 const MissionPage = Loadable(lazy(() => import('../pages/dashboard/pages/mission/MissionPage')));
 const AddMissionBanner = Loadable(lazy(() => import('../pages/dashboard/pages/mission/AddMissionBanner')));
+const AddMissionFacts = Loadable(lazy(() => import('../pages/dashboard/pages/mission/AddMissionFacts')));
+const AddMissionVission = Loadable(lazy(() => import('../pages/dashboard/pages/mission/AddMissionVission')));
+const AddMissionSteps = Loadable(lazy(() => import('../pages/dashboard/pages/mission/AddMissionSteps')));
 // Founder Page Sections
 const FounderPage = Loadable(lazy(() => import('../pages/dashboard/pages/founder/FounderPage')));
 const AddFounderBanner = Loadable(lazy(() => import('../pages/dashboard/pages/founder/AddFounderBanner')));
@@ -426,43 +506,83 @@ const AddFacultyBanner = Loadable(lazy(() => import('../pages/dashboard/pages/fa
 // Admission Page Sections
 const AdmissionPage = Loadable(lazy(() => import('../pages/dashboard/pages/admission/AdmissionPage')));
 const AddAdmissionBanner = Loadable(lazy(() => import('../pages/dashboard/pages/admission/AddAdmissionBanner')));
+const AddAdmissionPara = Loadable(lazy(() => import('../pages/dashboard/pages/admission/AddAdmissionPara')));
+const AddAdmissionFacts = Loadable(lazy(() => import('../pages/dashboard/pages/admission/AddAdmissionFacts')));
+const AddAdmissionFirst = Loadable(lazy(() => import('../pages/dashboard/pages/admission/AddAdmissionFirst')));
+const AddAdmissionSecond = Loadable(lazy(() => import('../pages/dashboard/pages/admission/AddAdmissionSecond')));
 // How To Apply Page Sections
 const HowToApplyPage = Loadable(lazy(() => import('../pages/dashboard/pages/how-to-apply/HowToApplyPage')));
 const AddHowToApplyBanner = Loadable(lazy(() => import('../pages/dashboard/pages/how-to-apply/AddHowToApplyBanner')));
+const AddApplyPara = Loadable(lazy(() => import('../pages/dashboard/pages/how-to-apply/AddApplyPara')));
+const AddApplyProcess = Loadable(lazy(() => import('../pages/dashboard/pages/how-to-apply/AddApplyProcess')));
+const AddApplyRequirements = Loadable(lazy(() => import('../pages/dashboard/pages/how-to-apply/AddApplyRequirements')));
 // Tuition Fees Page Sections
 const TuitionFeesPage = Loadable(lazy(() => import('../pages/dashboard/pages/tuition-fees/TuitionFeesPage')));
 const AddTuitionFeesBanner = Loadable(lazy(() => import('../pages/dashboard/pages/tuition-fees/AddTuitionFeesBanner')));
+const AddGraduateFee = Loadable(lazy(() => import('../pages/dashboard/pages/tuition-fees/AddGraduateFee')));
+const AddUnderGraduateFee = Loadable(lazy(() => import('../pages/dashboard/pages/tuition-fees/AddUnderGraduateFee')));
+const AddPostGraduateFee = Loadable(lazy(() => import('../pages/dashboard/pages/tuition-fees/AddPostGraduateFee')));
 // Financial Aid Page Sections
 const FinancialAidPage = Loadable(lazy(() => import('../pages/dashboard/pages/financial-aid/FinancialAidPage')));
 const AddFinancialAidBanner = Loadable(
   lazy(() => import('../pages/dashboard/pages/financial-aid/AddFinancialAidBanner'))
 );
+const AddFinancialFacts = Loadable(lazy(() => import('../pages/dashboard/pages/financial-aid/AddFinancialFacts')));
+const AddFinancialSteps = Loadable(lazy(() => import('../pages/dashboard/pages/financial-aid/AddFinancialSteps')));
+const AddFinancialAid = Loadable(lazy(() => import('../pages/dashboard/pages/financial-aid/AddFinancialAid')));
+const ListFinancialAid = Loadable(lazy(() => import('../pages/dashboard/pages/financial-aid/ListFinancialAid')));
 // Dates Deadlines Page Sections
 const DatesDeadLinesPage = Loadable(lazy(() => import('../pages/dashboard/pages/dates-deadlines/DatesDeadLinesPage')));
 const AddDatesDeadLinesBanner = Loadable(
   lazy(() => import('../pages/dashboard/pages/dates-deadlines/AddDatesDeadLinesBanner'))
 );
+const AddDeadLines = Loadable(lazy(() => import('../pages/dashboard/pages/dates-deadlines/AddDeadLines')));
 // Academics Page Sections
 const AcademicsPage = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AcademicsPage')));
 const AddAcademicsBanner = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AddAcademicsBanner')));
+const AddAcademicHistory = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AddAcademicHistory')));
+const AddAcademicGallery = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AddAcademicGallery')));
+const AcademicGalleryList = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AcademicGalleryList')));
+const AddAcademicOverview = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AddAcademicOverview')));
+const AddAcademicStudyAreas = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AddAcademicStudyAreas')));
+const AddAcademicMission = Loadable(lazy(() => import('../pages/dashboard/pages/academics/AddAcademicMission')));
 // Under Graduate page Sections
 const UnderGraduatePage = Loadable(lazy(() => import('../pages/dashboard/pages/under-graduate/UnderGraduatePage')));
 const AddUnderGraduateBanner = Loadable(
   lazy(() => import('../pages/dashboard/pages/under-graduate/AddUnderGraduateBanner'))
 );
+const AddUnderGraduateHistory = Loadable(
+  lazy(() => import('../pages/dashboard/pages/under-graduate/AddUnderGraduateHistory'))
+);
+const AddUnderGraduateDepartments = Loadable(
+  lazy(() => import('../pages/dashboard/pages/under-graduate/AddUnderGraduateDepartments'))
+);
 // Graduate Page Sections
 const GraduatePage = Loadable(lazy(() => import('../pages/dashboard/pages/graduate/GraduatePage')));
 const AddGraduateBanner = Loadable(lazy(() => import('../pages/dashboard/pages/graduate/AddGraduateBanner')));
+const AddGraduateHistory = Loadable(lazy(() => import('../pages/dashboard/pages/graduate/AddGraduateHistory')));
+const AddGraduateDepartments = Loadable(lazy(() => import('../pages/dashboard/pages/graduate/AddGraduateDepartments')));
 // Post Graduate Page Sections
 const PostGraduatePage = Loadable(lazy(() => import('../pages/dashboard/pages/post-graduate/PostGraduatePage')));
 const AddPostGraduateBanner = Loadable(
   lazy(() => import('../pages/dashboard/pages/post-graduate/AddPostGraduateBanner'))
+);
+const AddPostGraduateHistory = Loadable(
+  lazy(() => import('../pages/dashboard/pages/post-graduate/AddPostGraduateHistory'))
+);
+const AddPostGraduateDepartments = Loadable(
+  lazy(() => import('../pages/dashboard/pages/post-graduate/AddPostGraduateDepartments'))
 );
 // Summer Programs Page Sections
 const SummerProgramsPage = Loadable(lazy(() => import('../pages/dashboard/pages/summer-programs/SummerProgramsPage')));
 const AddSummerProgramsBanner = Loadable(
   lazy(() => import('../pages/dashboard/pages/summer-programs/AddSummerProgramsBanner'))
 );
+// Other Components
+const OtherPage = Loadable(lazy(() => import('../pages/dashboard/pages/other/OtherPage')));
+const AddOtherHeader = Loadable(lazy(() => import('../pages/dashboard/pages/other/AddOtherHeader')));
+const AddOtherFooter = Loadable(lazy(() => import('../pages/dashboard/pages/other/AddOtherFooter')));
+const AddPage = Loadable(lazy(() => import('../pages/dashboard/pages/other/AddPage')));
 // Publication Page
 const AddPublication = Loadable(lazy(() => import('../pages/dashboard/pages/AddPublication')));
 const PublicationList = Loadable(lazy(() => import('../pages/dashboard/pages/PublicationList')));

@@ -8,3 +8,4 @@ export { default as AddDepartmentItemForm } from './AddDepartmentItemForm';
 export { default as UpdateHomeAdmissionForm } from './UpdateHomeAdmissionForm';
 export { default as AddHowToApplyItemForm } from './AddHowToApplyItemForm';
 export { default as UpdateHomeScholarshipForm } from './UpdateHomeScholarshipForm';
+export { default as AddVideoForm } from './AddVideoForm';

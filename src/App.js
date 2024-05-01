@@ -41,3 +41,18 @@ export default function App() {
     </ThemeConfig>
   );
 }
+
+/*
+  Cover this
+    - Home Page
+      - TUITION FEE
+      - Programs Paragraphs
+    - About Page
+      - Gallery
+      - Testimonials
+    - History Page
+      CHECK WHOLE PAGE
+      History Slides
+    - TUITION FEE
+      - Check it Again
+*/

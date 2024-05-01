@@ -24,47 +24,17 @@ export default function PostGraduatePage() {
   const ACCOUNT_TABS = [
     {
       label: 'About Banner',
-      link: PATH_DASHBOARD.about.banner,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Admission Paras',
-      link: PATH_DASHBOARD.about.admissionParas,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Gallery',
-      link: PATH_DASHBOARD.about.gallery,
+      link: PATH_DASHBOARD.postGraduate.banner,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
       label: 'History',
-      link: PATH_DASHBOARD.home.history,
+      link: PATH_DASHBOARD.postGraduate.history,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Departments',
+      link: PATH_DASHBOARD.postGraduate.departments,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

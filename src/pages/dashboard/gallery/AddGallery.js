@@ -19,7 +19,7 @@ export default function AddGallery() {
   const { themeStretch } = useSettings();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const { id } = useParams();
+  const { id, page } = useParams();
   const { gallery: slider } = useSelector((state) => state.gallery);
   const isEdit = pathname.includes('edit');
 
@@ -38,7 +38,7 @@ export default function AddGallery() {
           ]}
         />
 
-        <AddGalleryForm isEdit={isEdit} currentProduct={slider} />
+        <AddGalleryForm isEdit={isEdit} page={page} currentProduct={slider} />
       </Container>
     </Page>
   );

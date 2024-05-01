@@ -23,48 +23,23 @@ export default function HowToApplyPage() {
 
   const ACCOUNT_TABS = [
     {
-      label: 'About Banner',
-      link: PATH_DASHBOARD.about.banner,
+      label: 'Banner',
+      link: PATH_DASHBOARD.howToApply.banner,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Admission Paras',
-      link: PATH_DASHBOARD.about.admissionParas,
+      label: 'Paragraphs',
+      link: PATH_DASHBOARD.howToApply.paras,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Gallery',
-      link: PATH_DASHBOARD.about.gallery,
+      label: 'Process',
+      link: PATH_DASHBOARD.howToApply.process,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'History',
-      link: PATH_DASHBOARD.home.history,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Campus Info',
-      link: PATH_DASHBOARD.home.campusInfo,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Department',
-      link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Addmision',
-      link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'How To Apply',
-      link: PATH_DASHBOARD.home.howToApply,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
-    },
-    {
-      label: 'Scholarship',
-      link: PATH_DASHBOARD.home.scholarship,
+      label: 'Requirements',
+      link: PATH_DASHBOARD.howToApply.requirements,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

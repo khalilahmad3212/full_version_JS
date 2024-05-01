@@ -17,6 +17,22 @@ export const getValueByKey = async (key) => {
 };
 
 // ----------------------------------------
+export const getGallery = async (page) => {
+  const result = await axios.get(`${SERVER}/gallery`, {
+    Filter: {
+      Page: page
+    }
+  });
+  try {
+    const json = await result.json();
+    return json;
+  } catch (error) {
+    console.log('error: ', error);
+    return false;
+  }
+};
+
+// ----------------------------------------
 
 export const updateValueById = async (id, formData) => {
   try {

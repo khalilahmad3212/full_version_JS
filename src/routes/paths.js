@@ -124,27 +124,44 @@ export const PATH_DASHBOARD = {
     about: path(ROOTS_DASHBOARD, '/home/about'),
     mission: path(ROOTS_DASHBOARD, '/home/mission'),
     history: path(ROOTS_DASHBOARD, '/home/history'),
+    statistics: path(ROOTS_DASHBOARD, '/home/statistics'),
     campusInfo: path(ROOTS_DASHBOARD, '/home/campus-info'),
+    para: path(ROOTS_DASHBOARD, '/home/para'),
     department: path(ROOTS_DASHBOARD, '/home/department'),
     newDepartment: path(ROOTS_DASHBOARD, '/home/department/new'),
     admission: path(ROOTS_DASHBOARD, '/home/admission'),
     howToApply: path(ROOTS_DASHBOARD, '/home/how-to-apply'),
     newHowToApply: path(ROOTS_DASHBOARD, '/home/how-to-apply/new'),
-    scholarship: path(ROOTS_DASHBOARD, '/home/scholarship')
+    scholarship: path(ROOTS_DASHBOARD, '/home/scholarship'),
+    sports: path(ROOTS_DASHBOARD, '/home/sports'),
+    tuitionFees: path(ROOTS_DASHBOARD, '/home/tuition-fees')
   },
   about: {
     root: path(ROOTS_DASHBOARD, '/about'),
     banner: path(ROOTS_DASHBOARD, '/about/banner'),
     admissionParas: path(ROOTS_DASHBOARD, '/about/admission-paras'),
-    gallery: path(ROOTS_DASHBOARD, '/about/gallery')
+    gallery: path(ROOTS_DASHBOARD, '/about/gallery'),
+    facts: path(ROOTS_DASHBOARD, '/about/facts'),
+    history: path(ROOTS_DASHBOARD, '/about/history'),
+    mission: path(ROOTS_DASHBOARD, '/about/mission'),
+    video: path(ROOTS_DASHBOARD, '/about/video')
   },
   campus: {
     root: path(ROOTS_DASHBOARD, '/campus'),
-    banner: path(ROOTS_DASHBOARD, '/campus/banner')
+    banner: path(ROOTS_DASHBOARD, '/campus/banner'),
+    paras: path(ROOTS_DASHBOARD, '/campus/paras'),
+    gallery: path(ROOTS_DASHBOARD, '/campus/gallery'),
+    video: path(ROOTS_DASHBOARD, '/campus/video'),
+    info: path(ROOTS_DASHBOARD, '/campus/info'),
+    hours: path(ROOTS_DASHBOARD, '/campus/hours'),
+    map: path(ROOTS_DASHBOARD, '/campus/map')
   },
   mission: {
     root: path(ROOTS_DASHBOARD, '/mission'),
-    banner: path(ROOTS_DASHBOARD, '/mission/banner')
+    banner: path(ROOTS_DASHBOARD, '/mission/banner'),
+    facts: path(ROOTS_DASHBOARD, '/mission/facts'),
+    vission: path(ROOTS_DASHBOARD, '/mission/vission'),
+    steps: path(ROOTS_DASHBOARD, '/mission/steps')
   },
   founder: {
     root: path(ROOTS_DASHBOARD, '/founder'),
@@ -160,43 +177,76 @@ export const PATH_DASHBOARD = {
   },
   admission: {
     root: path(ROOTS_DASHBOARD, '/admission'),
-    banner: path(ROOTS_DASHBOARD, '/admission/banner')
+    banner: path(ROOTS_DASHBOARD, '/admission/banner'),
+    admissionParas: path(ROOTS_DASHBOARD, '/admission/paras'),
+    facts: path(ROOTS_DASHBOARD, '/admission/facts'),
+    first: path(ROOTS_DASHBOARD, '/admission/first'),
+    second: path(ROOTS_DASHBOARD, '/admission/second')
   },
   howToApply: {
     root: path(ROOTS_DASHBOARD, '/how-to-apply'),
-    banner: path(ROOTS_DASHBOARD, '/how-to-apply/banner')
+    banner: path(ROOTS_DASHBOARD, '/how-to-apply/banner'),
+    paras: path(ROOTS_DASHBOARD, '/how-to-apply/paras'),
+    process: path(ROOTS_DASHBOARD, '/how-to-apply/process'),
+    requirements: path(ROOTS_DASHBOARD, '/how-to-apply/requirements')
   },
   tuitionFees: {
     root: path(ROOTS_DASHBOARD, '/tuition-fees'),
-    banner: path(ROOTS_DASHBOARD, '/tuition-fees/banner')
+    banner: path(ROOTS_DASHBOARD, '/tuition-fees/banner'),
+    graduate: path(ROOTS_DASHBOARD, '/tuition-fees/graduate'),
+    postGraduate: path(ROOTS_DASHBOARD, '/tuition-fees/post-graduate'),
+    underGraduate: path(ROOTS_DASHBOARD, '/tuition-fees/under-graduate')
   },
   financialAid: {
     root: path(ROOTS_DASHBOARD, '/financial-aid'),
-    banner: path(ROOTS_DASHBOARD, '/financial-aid/banner')
+    banner: path(ROOTS_DASHBOARD, '/financial-aid/banner'),
+    facts: path(ROOTS_DASHBOARD, '/financial-aid/facts'),
+    steps: path(ROOTS_DASHBOARD, '/financial-aid/steps'),
+    newAid: path(ROOTS_DASHBOARD, '/financial-aid/aid/new'),
+    list: path(ROOTS_DASHBOARD, '/financial-aid/list')
   },
   datesDeadLines: {
     root: path(ROOTS_DASHBOARD, '/dates-deadlines'),
-    banner: path(ROOTS_DASHBOARD, '/dates-deadlines/banner')
+    banner: path(ROOTS_DASHBOARD, '/dates-deadlines/banner'),
+    deadlines: path(ROOTS_DASHBOARD, '/dates-deadlines/deadlines')
   },
   academics: {
     root: path(ROOTS_DASHBOARD, '/academics'),
-    banner: path(ROOTS_DASHBOARD, '/academics/banner')
+    banner: path(ROOTS_DASHBOARD, '/academics/banner'),
+    academicHistory: path(ROOTS_DASHBOARD, '/academics/academic-history'),
+    academicGallery: path(ROOTS_DASHBOARD, '/academics/gallery'),
+    academicOverview: path(ROOTS_DASHBOARD, '/academics/overview'),
+    academicStudyAreas: path(ROOTS_DASHBOARD, '/academics/study-areas'),
+    mission: path(ROOTS_DASHBOARD, '/academics/mission')
   },
   underGraduate: {
     root: path(ROOTS_DASHBOARD, '/under-graduate'),
-    banner: path(ROOTS_DASHBOARD, '/under-graduate/banner')
+    banner: path(ROOTS_DASHBOARD, '/under-graduate/banner'),
+    history: path(ROOTS_DASHBOARD, '/under-graduate/history'),
+    departments: path(ROOTS_DASHBOARD, '/under-graduate/departments')
   },
   graduate: {
     root: path(ROOTS_DASHBOARD, '/graduate'),
-    banner: path(ROOTS_DASHBOARD, '/graduate/banner')
+    banner: path(ROOTS_DASHBOARD, '/graduate/banner'),
+    history: path(ROOTS_DASHBOARD, '/graduate/history'),
+    departments: path(ROOTS_DASHBOARD, '/graduate/departments')
   },
   postGraduate: {
     root: path(ROOTS_DASHBOARD, '/post-graduate'),
-    banner: path(ROOTS_DASHBOARD, '/post-graduate/banner')
+    banner: path(ROOTS_DASHBOARD, '/post-graduate/banner'),
+    history: path(ROOTS_DASHBOARD, '/post-graduate/history'),
+    departments: path(ROOTS_DASHBOARD, '/post-graduate/departments')
   },
   summerPrograms: {
     root: path(ROOTS_DASHBOARD, '/summer-programs'),
-    banner: path(ROOTS_DASHBOARD, '/summer-programs/banner')
+    banner: path(ROOTS_DASHBOARD, '/summer-programs/banner'),
+    gallery: path(ROOTS_DASHBOARD, '/summer-programs/gallery')
+  },
+  other: {
+    root: path(ROOTS_DASHBOARD, '/other'),
+    header: path(ROOTS_DASHBOARD, '/other/header'),
+    footer: path(ROOTS_DASHBOARD, '/other/footer'),
+    addPage: path(ROOTS_DASHBOARD, '/other/add-page')
   }
 };
 
