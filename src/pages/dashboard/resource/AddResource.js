@@ -33,12 +33,12 @@ export default function AddResource() {
           heading="Add New Resource"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Home', href: PATH_DASHBOARD.home.root },
+            { name: 'Resources', href: PATH_DASHBOARD.resource },
             { name: !isEdit ? 'New Resource' : slider?.ShortName }
           ]}
         />
-
-        <AddResourceForm isEdit={isEdit} currentProduct={slider} />
+        {isEdit && slider && <AddResourceForm isEdit={isEdit} currentProduct={slider} />}
+        {!isEdit && <AddResourceForm />}
       </Container>
     </Page>
   );

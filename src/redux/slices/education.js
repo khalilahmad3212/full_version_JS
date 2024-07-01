@@ -1,6 +1,7 @@
 import { sum, map, filter, uniqBy, reject } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { myAxios } from 'src/utils/axios';
 
 const SERVER = 'http://localhost:5001';
 const initialState = {
@@ -57,7 +58,7 @@ export function getEducations() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get(`${SERVER}/education`);
+      const response = await myAxios.get(`${SERVER}/education`);
       console.log(response.data);
       dispatch(slice.actions.getEducationsSuccess(response.data));
     } catch (error) {
@@ -73,7 +74,7 @@ export function getEducation(sliderId) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get(`${SERVER}/education/${sliderId}`);
+      const response = await myAxios.get(`${SERVER}/education/${sliderId}`);
       console.log(response.data);
       dispatch(slice.actions.getEducationSuccess(response.data));
     } catch (error) {
@@ -89,7 +90,7 @@ export function createEducation(formData) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.post(`${SERVER}/education`, formData);
+      const response = await myAxios.post(`${SERVER}/education`, formData);
       console.log(response.data);
     } catch (error) {
       console.log(error);

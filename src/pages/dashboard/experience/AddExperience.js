@@ -35,12 +35,12 @@ export default function AddExperience() {
           heading="Add New Expeience"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Home', href: PATH_DASHBOARD.home.root },
+            { name: 'Experiences', href: PATH_DASHBOARD.experience },
             { name: !isEdit ? 'New Experience' : slider?.Position }
           ]}
         />
-
-        <AddExperienceForm isEdit={isEdit} currentProduct={slider} />
+        {isEdit && slider && <AddExperienceForm isEdit={isEdit} currentProduct={slider} />}
+        {!isEdit && <AddExperienceForm isEdit={isEdit} currentProduct={slider} />}
       </Container>
     </Page>
   );

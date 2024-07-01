@@ -40,8 +40,8 @@ import { UserListHead, UserListToolbar, UserMoreMenu, UserMoreMenu2 } from '../.
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
+  { id: 'company', label: 'Department', alignRight: false },
+  { id: 'role', label: 'Designation', alignRight: false },
   { id: 'isVerified', label: 'Verified', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: '' }
@@ -186,7 +186,18 @@ export default function UserList2() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { Id, FirstName, LastName, Department, Designation, status, Image, isVerified } = row;
+                    const {
+                      Id,
+                      FirstName,
+                      LastName,
+                      Department,
+                      Designation,
+                      status,
+                      Role,
+                      Image,
+                      isVerified,
+                      CurrentStatus
+                    } = row;
                     const isItemSelected = selected.indexOf(Id) !== -1;
 
                     return (
@@ -198,9 +209,9 @@ export default function UserList2() {
                         selected={isItemSelected}
                         aria-checked={isItemSelected}
                       >
-                        <TableCell padding="checkbox">
+                        {/* <TableCell padding="checkbox">
                           <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, Id)} />
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
                             <Avatar alt={FirstName} src={`http://localhost:5001/employee-images/${Image}`} />
@@ -211,14 +222,13 @@ export default function UserList2() {
                         </TableCell>
                         <TableCell align="left">{Department?.Name}</TableCell>
                         <TableCell align="left">{Designation}</TableCell>
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                        <TableCell align="left">{Role}</TableCell>
                         <TableCell align="left">
                           <Label
                             variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
                             color={(status === 'banned' && 'error') || 'success'}
                           >
-                            `-`
-                            {/* {sentenceCase(status)} */}
+                            {sentenceCase(CurrentStatus)}
                           </Label>
                         </TableCell>
 

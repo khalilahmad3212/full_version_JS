@@ -35,22 +35,6 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 
 // ----------------------------------------------------------------------
 
-const TAGS_OPTION = [
-  'Toy Story 3',
-  'Logan',
-  'Full Metal Jacket',
-  'Dangal',
-  'The Sting',
-  '2001: A Space Odyssey',
-  "Singin' in the Rain",
-  'Toy Story',
-  'Bicycle Thieves',
-  'The Kid',
-  'Inglourious Basterds',
-  'Snatch',
-  '3 Idiots'
-];
-
 const LabelStyle = styled(Typography)(({ theme }) => ({
   ...theme.typography.subtitle2,
   color: theme.palette.text.secondary,
@@ -59,12 +43,9 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AddDepartmentItemForm({ isEdit, currentProduct: currentSlider }) {
+export default function AddDepartmentItemForm({ isEdit }) {
   const { enqueueSnackbar } = useSnackbar();
-  const [open, setOpen] = useState(false);
   const [data, setData] = useState();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
 
   const NewBlogSchema = Yup.object().shape({
@@ -76,10 +57,10 @@ export default function AddDepartmentItemForm({ isEdit, currentProduct: currentS
 
   const formik = useFormik({
     initialValues: {
-      url: currentSlider?.url || '',
-      Name: currentSlider?.Name || '',
-      Description: currentSlider?.Description || '',
-      Image: isEdit ? `http://localhost:5001/slider-images/${currentSlider?.Link}` : null
+      url: '',
+      Name: '',
+      Description: '',
+      Image: null
     },
     validationSchema: NewBlogSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
@@ -168,6 +149,7 @@ export default function AddDepartmentItemForm({ isEdit, currentProduct: currentS
       try {
         const result = await getValueByKey('home-programs');
         result.value = JSON.parse(result.value);
+        console.log('my-result: ', result);
         if (isEdit) {
           console.log(result);
           console.log('id: ', id);

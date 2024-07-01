@@ -1,8 +1,39 @@
+// icons
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import SchoolIcon from '@mui/icons-material/School';
+import RadarIcon from '@mui/icons-material/Radar';
+import Person2Icon from '@mui/icons-material/Person';
+import HistoryIcon from '@mui/icons-material/History';
+import GroupsIcon from '@mui/icons-material/Groups';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import {
+  HowToReg,
+  MoreHoriz,
+  BeachAccess,
+  LocalLibrary,
+  MenuBook,
+  Receipt,
+  DateRange,
+  LocalHospital,
+  Public,
+  Apartment,
+  Assignment,
+  Timeline,
+  Language,
+  CastForEducation,
+  Announcement,
+  Notes,
+  SignalCellular0Bar,
+  SignalCellularAlt,
+  ViewDay
+} from '@mui/icons-material';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // components
 import Label from '../../components/Label';
 import SvgIconStyle from '../../components/SvgIconStyle';
+import { title } from 'src/utils/mock-data/text';
 
 // ----------------------------------------------------------------------
 
@@ -11,18 +42,35 @@ const getIcon = (name) => (
 );
 
 const ICONS = {
-  blog: getIcon('ic_blog'),
-  cart: getIcon('ic_cart'),
-  chat: getIcon('ic_chat'),
-  mail: getIcon('ic_mail'),
-  user: getIcon('ic_user'),
-  kanban: getIcon('ic_kanban'),
-  banking: getIcon('ic_banking'),
+  home: <HomeIcon />,
+  about: <InfoIcon />,
+  campus: <SchoolIcon />,
+  mission: <RadarIcon />,
+  founder: <Person2Icon />,
+  history: <HistoryIcon />,
+  faculty: <GroupsIcon />,
+  admission: <PersonAddAlt1Icon />,
+  fee: <Receipt />,
+  aid: <LocalHospital />,
+  howToApply: <HowToReg />,
+  deadline: <DateRange />,
+  academics: <MenuBook />,
+  underGradeuate: <LocalLibrary />,
+  summer: <BeachAccess />,
+  other: <MoreHoriz />,
+  publication: <Public />,
+  department: <Apartment />,
+  organization: <GroupsIcon />,
+  program: <Assignment />,
+  experience: <Timeline />,
+  recognition: <Language />,
+  education: <CastForEducation />,
+  news: <Notes />,
+  announcement: <Announcement />,
+  skills: <SignalCellularAlt />,
+  semester: <ViewDay />,
   calendar: getIcon('ic_calendar'),
-  ecommerce: getIcon('ic_ecommerce'),
-  analytics: getIcon('ic_analytics'),
-  dashboard: getIcon('ic_dashboard'),
-  booking: getIcon('ic_booking')
+  user: getIcon('ic_user')
 };
 
 const sidebarConfig = [
@@ -99,12 +147,26 @@ const sidebarConfig = [
     subheader: 'user',
     items: [
       {
-        title: 'User',
+        title: 'Users',
+        role: 'ADMIN',
         path: PATH_DASHBOARD.home.root,
         icon: ICONS.user,
         children: [
-          { title: 'All Users', path: PATH_DASHBOARD.user.list },
-          { title: 'Account', path: PATH_DASHBOARD.user.account }
+          { title: 'List Users', path: PATH_DASHBOARD.user.list },
+          { title: 'New User', path: PATH_DASHBOARD.user.newUser }
+        ]
+      },
+      {
+        title: 'Settings',
+        path: PATH_DASHBOARD.user.account,
+        icon: ICONS.user,
+        children: [
+          { title: 'Account', path: PATH_DASHBOARD.user.account },
+          { title: 'publications', path: PATH_DASHBOARD.publications, icon: ICONS.publication },
+          { title: 'Experiences', path: PATH_DASHBOARD.experience, icon: ICONS.experience },
+          { title: 'Recognitions', path: PATH_DASHBOARD.recognition, icon: ICONS.recognition },
+          { title: 'Educations', path: PATH_DASHBOARD.education, icon: ICONS.education },
+          { title: 'Skills', path: PATH_DASHBOARD.skills, icon: ICONS.skills },
         ]
       }
     ]
@@ -114,39 +176,90 @@ const sidebarConfig = [
   // ----------------------------------------------------------------------
   {
     subheader: 'pages',
+    role: 'ADMIN',
     items: [
       // MANAGEMENT : Home Page Sections
-      { title: 'home', path: PATH_DASHBOARD.home.root, icon: ICONS.user },
-      { title: 'about', path: PATH_DASHBOARD.about.root, icon: ICONS.user },
-      { title: 'campus', path: PATH_DASHBOARD.campus.root, icon: ICONS.user },
-      { title: 'mission', path: PATH_DASHBOARD.mission.root, icon: ICONS.user },
-      { title: 'founder', path: PATH_DASHBOARD.founder.root, icon: ICONS.user },
-      { title: 'history', path: PATH_DASHBOARD.history.root, icon: ICONS.user },
-      { title: 'faculty', path: PATH_DASHBOARD.faculty.root, icon: ICONS.user },
-      { title: 'admission', path: PATH_DASHBOARD.admission.root, icon: ICONS.user },
-      { title: 'how-to-apply', path: PATH_DASHBOARD.howToApply.root, icon: ICONS.user },
-      { title: 'tuition-fees', path: PATH_DASHBOARD.tuitionFees.root, icon: ICONS.user },
-      { title: 'financial-aid', path: PATH_DASHBOARD.financialAid.root, icon: ICONS.user },
-      { title: 'dates-deadline', path: PATH_DASHBOARD.datesDeadLines.root, icon: ICONS.user },
-      { title: 'academics', path: PATH_DASHBOARD.academics.root, icon: ICONS.user },
-      { title: 'under-graduate', path: PATH_DASHBOARD.underGraduate.root, icon: ICONS.user },
-      { title: 'graduate', path: PATH_DASHBOARD.graduate.root, icon: ICONS.user },
-      { title: 'post-graduate', path: PATH_DASHBOARD.postGraduate.root, icon: ICONS.user },
-      { title: 'summer-programs', path: PATH_DASHBOARD.summerPrograms.root, icon: ICONS.user },
-      { title: 'Other', path: PATH_DASHBOARD.other.root, icon: ICONS.user },
-      { title: 'publications', path: PATH_DASHBOARD.publications, icon: ICONS.calendar },
-      { title: 'departments', path: PATH_DASHBOARD.departments, icon: ICONS.calendar },
-      { title: 'organizations', path: PATH_DASHBOARD.organizations, icon: ICONS.calendar },
-      { title: 'Prgorams', path: PATH_DASHBOARD.programs, icon: ICONS.calendar },
-      { title: 'Experiences', path: PATH_DASHBOARD.experience, icon: ICONS.calendar },
-      { title: 'Recognitions', path: PATH_DASHBOARD.recognition, icon: ICONS.calendar },
-      { title: 'Educations', path: PATH_DASHBOARD.education, icon: ICONS.calendar },
-      { title: 'News', path: PATH_DASHBOARD.news, icon: ICONS.calendar },
-      { title: 'Announcements', path: PATH_DASHBOARD.announcements, icon: ICONS.calendar },
-      { title: 'Gallery', path: PATH_DASHBOARD.gallery, icon: ICONS.calendar },
-      { title: 'Resource', path: PATH_DASHBOARD.resource, icon: ICONS.calendar },
-      { title: 'Skills', path: PATH_DASHBOARD.skills, icon: ICONS.calendar },
-      { title: 'Semesters', path: PATH_DASHBOARD.semester, icon: ICONS.calendar }
+      { title: 'home', role: 'ADMIN', path: PATH_DASHBOARD.home.root, icon: ICONS.home },
+      {
+        title: "About",
+        role: 'ADMIN',
+        path: PATH_DASHBOARD.about.root,
+        icon: ICONS.about,
+        children: [
+          { title: 'overview', path: PATH_DASHBOARD.about.root },
+          { title: 'campus', path: PATH_DASHBOARD.campus.root },
+          { title: 'mission', path: PATH_DASHBOARD.mission.root },
+          { title: 'vision', path: PATH_DASHBOARD.mission.vission },
+          { title: 'founder', path: PATH_DASHBOARD.founder.root, icon: ICONS.founder },
+          { title: 'history', path: PATH_DASHBOARD.history.root, icon: ICONS.history },
+          { title: 'VC Message', role: 'ADMIN', path: PATH_DASHBOARD.vcMessage, icon: ICONS.about },
+        ]
+      },
+      {
+        title: 'Admission',
+        role: 'ADMIN',
+        path: PATH_DASHBOARD.admission.root,
+        icon: ICONS.admission,
+        children: [
+          { title: 'overview', path: PATH_DASHBOARD.admission.root, icon: ICONS.admission },
+          { title: 'how-to-apply', path: PATH_DASHBOARD.howToApply.root, icon: ICONS.howToApply },
+          { title: 'tuition-fees', path: PATH_DASHBOARD.tuitionFees.root, icon: ICONS.fee },
+          { title: 'financial-aid', path: PATH_DASHBOARD.financialAid.root, icon: ICONS.aid },
+          { title: 'dates-deadline', path: PATH_DASHBOARD.datesDeadLines.root, icon: ICONS.deadline }
+        ]
+      },
+      {
+        title: 'Academics',
+        role: 'ADMIN',
+        path: PATH_DASHBOARD.academics.root,
+        icon: ICONS.academics,
+        children: [
+          { title: 'academics', path: PATH_DASHBOARD.academics.root, icon: ICONS.academics },
+          { title: 'under-graduate', path: PATH_DASHBOARD.underGraduate.root, icon: ICONS.underGradeuate },
+          { title: 'graduate', path: PATH_DASHBOARD.graduate.root, icon: ICONS.underGradeuate },
+          { title: 'post-graduate', path: PATH_DASHBOARD.postGraduate.root, icon: ICONS.underGradeuate },
+          { title: 'summer-programs', path: PATH_DASHBOARD.summerPrograms.root, icon: ICONS.summer }
+        ]
+      },
+      { title: 'faculty', role: 'ADMIN', path: PATH_DASHBOARD.faculty.root, icon: ICONS.faculty },
+      { title: 'Other', role: 'ADMIN', path: PATH_DASHBOARD.other.root, icon: ICONS.other },
+      {
+        title: 'Departments',
+        role: 'ADMIN',
+        path: PATH_DASHBOARD.departments,
+        icon: ICONS.department,
+        children: [
+          { title: 'List Departments', path: PATH_DASHBOARD.departments, icon: ICONS.department },
+          { title: 'New Department', path: PATH_DASHBOARD.newDepartment, icon: ICONS.department },
+        ]
+      },
+      {
+        title: 'Organization',
+        role: 'ADMIN',
+        path: PATH_DASHBOARD.organizations,
+        icon: ICONS.organization,
+        children: [
+          { title: 'List Organizations', path: PATH_DASHBOARD.organizations, icon: ICONS.organization },
+          { title: 'New Organization', path: PATH_DASHBOARD.newOrganizations, icon: ICONS.organization },
+        ]
+      },
+      {
+        title: 'Authorities',
+        role: 'ADMIN',
+        path: PATH_DASHBOARD.authorities.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'Syndicate', path: PATH_DASHBOARD.authorities.syndicate, icon: ICONS.organization },
+          { title: 'Senate', path: PATH_DASHBOARD.authorities.senate, icon: ICONS.organization },
+          { title: 'Academic Councel', path: PATH_DASHBOARD.authorities.academicCouncel, icon: ICONS.organization },
+        ]
+      },
+      { title: 'Programs', role: 'ADMIN', path: PATH_DASHBOARD.programs, icon: ICONS.program },
+      { title: 'News', role: 'ADMIN', path: PATH_DASHBOARD.news, icon: ICONS.news },
+      { title: 'Announcements', role: 'ADMIN', path: PATH_DASHBOARD.announcements, icon: ICONS.announcement },
+      // { title: 'Gallery', path: PATH_DASHBOARD.gallery, icon: ICONS.calendar },
+      { title: 'Resource', role: 'ADMIN', path: PATH_DASHBOARD.resource, icon: ICONS.calendar },
+      { title: 'Semesters', role: 'ADMIN', path: PATH_DASHBOARD.semester, icon: ICONS.semester },
       // MANAGEMENT : E-COMMERCE
       // {
       //   title: 'e-commerce',
@@ -179,24 +292,24 @@ const sidebarConfig = [
 
   // APP
   // ----------------------------------------------------------------------
-  {
-    subheader: 'app',
-    items: [
-      // {
-      //   title: 'mail',
-      //   path: PATH_DASHBOARD.mail.root,
-      //   icon: ICONS.mail,
-      //   info: <Label color="error">2</Label>
-      // },
-      // { title: 'chat', path: PATH_DASHBOARD.chat.root, icon: ICONS.chat },
-      { title: 'calendar', path: PATH_DASHBOARD.calendar, icon: ICONS.calendar }
-      // {
-      //   title: 'kanban',
-      //   path: PATH_DASHBOARD.kanban,
-      //   icon: ICONS.kanban
-      // }
-    ]
-  }
+  // {
+  //   subheader: 'app',
+  //   items: [
+  //     // {
+  //     //   title: 'mail',
+  //     //   path: PATH_DASHBOARD.mail.root,
+  //     //   icon: ICONS.mail,
+  //     //   info: <Label color="error">2</Label>
+  //     // },
+  //     // { title: 'chat', path: PATH_DASHBOARD.chat.root, icon: ICONS.chat },
+  //     { title: 'calendar', path: PATH_DASHBOARD.calendar, icon: ICONS.calendar }
+  //     // {
+  //     //   title: 'kanban',
+  //     //   path: PATH_DASHBOARD.kanban,
+  //     //   icon: ICONS.kanban
+  //     // }
+  //   ]
+  // }
 ];
 
 export default sidebarConfig;

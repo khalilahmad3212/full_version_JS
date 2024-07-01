@@ -142,15 +142,24 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         ) : (
           <Link underline="none" component={RouterLink} to={PATH_DASHBOARD.user.account}>
             <AccountStyle>
-              <MyAvatar />
-              <Box sx={{ ml: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                  {user?.displayName}
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {user?.role}
-                </Typography>
-              </Box>
+              <div className='flex flex-col'>
+                <div style={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
+                  <MyAvatar />
+                  <Box sx={{ ml: 2 }}>
+                    <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+                      {user?.FirstName} {user?.LastName}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                      {user?.Role}
+                    </Typography>
+                  </Box>
+                </div>
+                <div>
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    {user?.Email}
+                  </Typography>
+                </div>
+              </div>
             </AccountStyle>
           </Link>
         )}

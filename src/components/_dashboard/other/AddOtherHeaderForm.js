@@ -31,7 +31,7 @@ export default function AddOtherHeaderForm({ data, isEdit, limit }) {
     sections: Yup.array().of(
       Yup.object().shape({
         title: Yup.string().required('Title is required'),
-        link: Yup.string().required('Link is required'),
+        link: Yup.string(),
         links: Yup.array().of(
           Yup.object().shape({
             link: Yup.string().required('Link is required'),
@@ -135,9 +135,9 @@ export default function AddOtherHeaderForm({ data, isEdit, limit }) {
                           variant="outlined"
                         />
                         <AddLinkForm
-                          label1="Program"
-                          label2="Fee"
-                          buttonText="Add Program"
+                          label1="Text"
+                          label2="Link"
+                          buttonText="Add Link"
                           data={paragraph?.links}
                           onChange={handleLinks(index)}
                         />

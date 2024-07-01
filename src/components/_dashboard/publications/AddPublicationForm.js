@@ -3,7 +3,7 @@ import { useSnackbar } from 'notistack';
 import { useCallback, useEffect, useState } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
-import { DatePicker, LoadingButton, MobileDateTimePicker } from '@mui/lab';
+import { DatePicker, LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
 import {
   Card,
@@ -32,7 +32,8 @@ import { UploadSingleFile } from '../../upload';
 // import BlogNewPostPreview from './AddSliderItemPreview';
 import { createPublication, updatePublication } from '../../../redux/slices/publications';
 import { PATH_DASHBOARD } from '../../../routes/paths';
-
+import { LocalizationProvider } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 // ----------------------------------------------------------------------
 
 const TAGS_OPTION = [
@@ -67,8 +68,10 @@ export default function AddPublicationForm({ isEdit, currentProduct: currentSlid
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const [value, setValue] = useState(new Date());
+
   const NewBlogSchema = Yup.object().shape({
-    year: Yup.string().required('Year is required'),
+    year: Yup.string(),
     Title: Yup.string().required('Title is required'),
     Type: Yup.string().required('Type is required'),
     Image: Yup.mixed().required('Image is required')
@@ -161,14 +164,18 @@ export default function AddPublicationForm({ isEdit, currentProduct: currentSlid
             <Grid item xs={12}>
               <Card sx={{ p: 3 }}>
                 <Stack spacing={3}>
-                  <MobileDateTimePicker
-                    label="Year"
-                    value={values.year}
-                    views={['year']}
-                    inputFormat="yyyy"
-                    onChange={(date) => setFieldValue('year', date)}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="Custom Date"
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(params) => <TextField {...params} helperText="Select your date" />}
+                      minDate={new Date('2023-01-01')}
+                      maxDate={new Date('2024-12-31')}
+                    />
+                  </LocalizationProvider>
 
                   <TextField
                     fullWidth

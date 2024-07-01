@@ -36,7 +36,7 @@ export default function AddHomeFacts() {
     <Page title="About: Paragraphs | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs heading="Statistics" />
-        {data && <AddFactForm data={data} isEdit={isEdit} />}
+        {data && <AddFactForm data={data} isEdit={isEdit} label1="Count" label2="Tagline" />}
       </Container>
     </Page>
   );

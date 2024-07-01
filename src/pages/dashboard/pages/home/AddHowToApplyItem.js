@@ -31,11 +31,11 @@ export default function AddHowToApplyItem() {
     <Page title="Home: New Slider Item | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Create a new slider item"
+          heading="How to Apply"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Home', href: PATH_DASHBOARD.home.root },
-            { name: 'New Slider Item' }
+            { name: 'Home', href: PATH_DASHBOARD.home.howToApply },
+            { name: 'New Item' }
           ]}
         />
         <AddHowToApplyItemForm isEdit={isEdit} />

@@ -33,8 +33,8 @@ export default function OtherPage() {
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
-      label: 'Add Page',
-      link: PATH_DASHBOARD.other.addPage,
+      label: 'Pages',
+      link: PATH_DASHBOARD.other.listPages,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];

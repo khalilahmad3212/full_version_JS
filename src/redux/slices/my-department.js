@@ -39,7 +39,7 @@ const slice = createSlice({
 
     // DELETE PRODUCT
     deleteMyDepartmentSuccess(state, action) {
-      state.departments = reject(state.departments, { id: action.payload });
+      state.departments = reject(state.departments, { Id: action.payload });
     }
   }
 });

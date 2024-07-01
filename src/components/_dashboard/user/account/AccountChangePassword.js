@@ -7,6 +7,7 @@ import { Stack, Card, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // utils
 import useAuth from '../../../../hooks/useAuth';
+import { myAxios } from '../../../../utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -27,15 +28,15 @@ export default function AccountChangePassword() {
       confirmNewPassword: ''
     },
     validationSchema: ChangePassWordSchema,
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        const response = await axios.patch(`http://localhost:5001/employee/changepassword`, values);
+        const response = await myAxios.patch(`/employee/changepassword`, values);
         console.log(response);
       } catch (error) {
         console.log(error);
       }
       setSubmitting(false);
-      alert(JSON.stringify(values, null, 2));
+      resetForm();
       enqueueSnackbar('Save success', { variant: 'success' });
     }
   });

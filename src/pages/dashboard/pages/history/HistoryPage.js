@@ -26,6 +26,11 @@ export default function HistoryPage() {
       label: 'About Banner',
       link: PATH_DASHBOARD.history.banner,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
+    },
+    {
+      label: 'Events',
+      link: PATH_DASHBOARD.history.events,
+      icon: <Icon icon={roundAccountBox} width={20} height={20} />
     }
   ];
 

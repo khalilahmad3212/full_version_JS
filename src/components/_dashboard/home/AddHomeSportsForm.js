@@ -112,7 +112,7 @@ export default function AddHomeSportsForm({ data, isEdit }) {
         <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <Card sx={{ p: 3 }}>
+              <Card sx={{ p: 3, mb: 2 }}>
                 <Stack spacing={3}>
                   <TextField
                     fullWidth
@@ -148,7 +148,7 @@ export default function AddHomeSportsForm({ data, isEdit }) {
               </Card>
               <Card sx={{ p: 3 }}>
                 <Stack spacing={3}>
-                  <AddLinkForm data={values.links} onChange={handleLinks} />
+                  <AddLinkForm data={values.links} label1="Text" label2="Link" onChange={handleLinks} />
                 </Stack>
               </Card>
             </Grid>

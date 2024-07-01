@@ -234,19 +234,6 @@ export default function SliderItemsList() {
                           </Box>
                         </TableCell>
                         <TableCell style={{ minWidth: 160 }}>{fDate(Date.now())}</TableCell>
-                        {/* <TableCell style={{ minWidth: 160 }}>
-                          <Label
-                            variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                            color={
-                              (inventoryType === 'out_of_stock' && 'error') ||
-                              (inventoryType === 'low_stock' && 'warning') ||
-                              'success'
-                            }
-                          >
-                            {sentenceCase(inventoryType)}
-                          </Label>
-                        </TableCell> */}
-                        {/* <TableCell align="right">{fCurrency(price)}</TableCell> */}
                         <TableCell align="right">
                           <ProductMoreMenu onDelete={() => handleDeleteProduct(Id)} productName={Id} />
                         </TableCell>
@@ -274,7 +261,7 @@ export default function SliderItemsList() {
             </TableContainer>
           </Scrollbar>
 
-          {/* <TablePagination
+          <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
             count={products.length}
@@ -282,7 +269,7 @@ export default function SliderItemsList() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-          /> */}
+          />
         </Card>
       </Container>
     </Page>

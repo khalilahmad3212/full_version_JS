@@ -103,7 +103,7 @@ export default function UploadMultiFile({ error, showPreview = false, files, onR
           })
         }}
       >
-        <input {...getInputProps()} />
+        <input multiple {...getInputProps()} />
 
         <UploadIllustration sx={{ width: 220 }} />
 

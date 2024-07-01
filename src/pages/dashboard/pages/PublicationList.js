@@ -191,7 +191,7 @@ export default function PublicationList() {
               <Table>
                 <TableBody>
                   {filteredProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { Id, Title, Year, Link: Image } = row;
+                    const { Id, Title, Year, Type, Link: Image } = row;
 
                     const isItemSelected = selected.indexOf(Id) !== -1;
 
@@ -222,7 +222,7 @@ export default function PublicationList() {
                             </Typography>
                           </Box>
                         </TableCell>
-                        <TableCell style={{ minWidth: 160 }}>{fDate(Year)}</TableCell>
+                        <TableCell style={{ minWidth: 160 }}>{Type}</TableCell>
                         <TableCell align="right">
                           <PublicationMoreMenu onDelete={() => handleDeleteProduct(Id)} productName={Id} />
                         </TableCell>

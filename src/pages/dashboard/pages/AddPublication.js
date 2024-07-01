@@ -26,7 +26,9 @@ export default function AddPublication() {
   // const currentProduct = products.find((product) => paramCase(product.name) === name);
 
   useEffect(() => {
-    dispatch(getPublication(id));
+    if (isEdit) {
+      dispatch(getPublication(id));
+    }
   }, [dispatch]);
   return (
     <Page title="Home: New Slider Item | Sukkur IBA">
@@ -39,7 +41,8 @@ export default function AddPublication() {
             { name: !isEdit ? 'New Publication' : publication?.Title }
           ]}
         />
-        <AddPublicationForm isEdit={isEdit} currentProduct={publication} />
+        {isEdit && publication && <AddPublicationForm isEdit={isEdit} currentProduct={publication} />}
+        {!isEdit && <AddPublicationForm />}
       </Container>
     </Page>
   );

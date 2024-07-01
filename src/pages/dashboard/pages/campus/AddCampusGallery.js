@@ -37,8 +37,8 @@ export default function AddCampusGallery() {
             { name: !isEdit ? 'New Gallery' : slider?.Category }
           ]}
         />
-
-        <AddGalleryForm isEdit={isEdit} page="campus" currentProduct={slider} />
+        {isEdit && slider && <AddGalleryForm isEdit={isEdit} page="campus" currentProduct={slider} />}
+        {!isEdit && <AddGalleryForm isEdit={isEdit} page="campus" />}
       </Container>
     </Page>
   );

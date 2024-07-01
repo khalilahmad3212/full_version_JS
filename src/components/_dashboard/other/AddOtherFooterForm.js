@@ -143,9 +143,9 @@ export default function AddOtherFooterForm({ data, isEdit, limit }) {
                         />
 
                         <AddLinkForm
-                          label1="Program"
-                          label2="Fee"
-                          buttonText="Add Program"
+                          label1="text"
+                          label2="link"
+                          buttonText="Add Link"
                           data={paragraph?.links}
                           onChange={handleLinks(index)}
                         />

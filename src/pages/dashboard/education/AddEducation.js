@@ -27,7 +27,9 @@ export default function AddRecognition() {
   // const currentProduct = products.find((product) => paramCase(product.name) === name);
 
   useEffect(() => {
-    dispatch(getEducation(id));
+    if (id) {
+      dispatch(getEducation(id));
+    }
   }, [dispatch]);
   return (
     <Page title="Home: New Recognition | Sukkur IBA">
@@ -40,8 +42,8 @@ export default function AddRecognition() {
             { name: !isEdit ? 'New Education' : slider?.Title }
           ]}
         />
-
-        <AddEducationForm isEdit={isEdit} currentSlider={slider} />
+        {isEdit && slider && <AddEducationForm isEdit={isEdit} currentSlider={slider} />}
+        {!isEdit && <AddEducationForm isEdit={isEdit} currentSlider={slider} />}
       </Container>
     </Page>
   );

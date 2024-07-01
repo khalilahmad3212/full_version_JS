@@ -39,7 +39,7 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AddFactForm({ data, isEdit, limit }) {
+export default function AddFactForm({ data, isEdit, limit, label1, label2 }) {
   const { enqueueSnackbar } = useSnackbar();
 
   /*
@@ -123,7 +123,7 @@ export default function AddFactForm({ data, isEdit, limit }) {
                           name="title"
                           value={paragraph.title}
                           onChange={(event) => handleParagraphChange(index, event)}
-                          label="Title"
+                          label={label1 ?? "Title"}
                           variant="outlined"
                         />
                         <TextField
@@ -134,7 +134,7 @@ export default function AddFactForm({ data, isEdit, limit }) {
                           multiline
                           value={paragraph.description}
                           onChange={(event) => handleParagraphChange(index, event)}
-                          label="Description"
+                          label={label2 ?? "Description"}
                           variant="outlined"
                         />
                       </Stack>

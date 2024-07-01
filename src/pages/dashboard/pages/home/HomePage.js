@@ -2,11 +2,18 @@ import { Outlet, useNavigate } from 'react-router';
 import { Icon } from '@iconify/react';
 import { capitalCase } from 'change-case';
 import { useState, useEffect } from 'react';
-import bellFill from '@iconify/icons-eva/bell-fill';
-import shareFill from '@iconify/icons-eva/share-fill';
-import roundVpnKey from '@iconify/icons-ic/round-vpn-key';
-import roundReceipt from '@iconify/icons-ic/round-receipt';
+// icons
 import roundAccountBox from '@iconify/icons-ic/round-account-box';
+import homeFill from '@iconify/icons-eva/home-fill';
+import aboutFill from '@iconify/icons-eva/book-fill';
+import history from '@iconify/icons-ic/history';
+// material icons
+import LinearScaleIcon from '@mui/icons-material/LinearScale';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import InfoIcon from '@mui/icons-material/Info';
+import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
+import PatternIcon from '@mui/icons-material/Pattern';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 // material
 import { Container, Tab, Box, Tabs, Stack } from '@mui/material';
 // redux
@@ -31,17 +38,17 @@ export default function HomePage() {
     {
       label: 'Home Slider',
       link: PATH_DASHBOARD.home.sliderItems,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <LinearScaleIcon />
     },
     {
       label: 'About',
       link: PATH_DASHBOARD.home.about,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <Icon icon={aboutFill} width={20} height={20} />
     },
     {
-      label: 'Mission',
+      label: 'History & Mission',
       link: PATH_DASHBOARD.home.mission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <Icon icon={history} width={20} height={20} />
     },
     // {
     //   label: 'History',
@@ -51,27 +58,27 @@ export default function HomePage() {
     {
       label: 'Statistics',
       link: PATH_DASHBOARD.home.statistics,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <BarChartIcon />
     },
     {
       label: 'Campus Info',
       link: PATH_DASHBOARD.home.campusInfo,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <InfoIcon />
     },
     {
       label: 'Paragraphs',
       link: PATH_DASHBOARD.home.para,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <AlignHorizontalLeftIcon />
     },
     {
       label: 'Department',
       link: PATH_DASHBOARD.home.department,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <PatternIcon />
     },
     {
       label: 'Addmision',
       link: PATH_DASHBOARD.home.admission,
-      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+      icon: <PersonAddAlt1Icon />
     },
     {
       label: 'How To Apply',

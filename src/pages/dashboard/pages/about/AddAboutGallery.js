@@ -26,6 +26,7 @@ export default function AddAboutGallery() {
   useEffect(() => {
     dispatch(getGallery(id));
   }, [dispatch]);
+
   return (
     <Page title="Home: New Slider Item | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
@@ -37,8 +38,8 @@ export default function AddAboutGallery() {
             { name: !isEdit ? 'New Gallery' : slider?.Category }
           ]}
         />
-
-        <AddGalleryForm isEdit={isEdit} page="about" currentProduct={slider} />
+        {isEdit && slider && <AddGalleryForm isEdit={isEdit} page="about" currentProduct={slider} />}
+        {!isEdit && <AddGalleryForm isEdit={isEdit} page="about" />}
       </Container>
     </Page>
   );

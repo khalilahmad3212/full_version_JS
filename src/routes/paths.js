@@ -41,6 +41,12 @@ export const PATH_DASHBOARD = {
     banking: path(ROOTS_DASHBOARD, '/banking'),
     booking: path(ROOTS_DASHBOARD, '/booking')
   },
+  authorities: {
+    root: path(ROOTS_DASHBOARD, '/authorities'),
+    syndicate: path(ROOTS_DASHBOARD, '/authorities/syndicate'),
+    senate: path(ROOTS_DASHBOARD, '/authorities/senate'),
+    academicCouncel: path(ROOTS_DASHBOARD, '/authorities/academic-councel'),
+  },
   mail: {
     root: path(ROOTS_DASHBOARD, '/mail'),
     all: path(ROOTS_DASHBOARD, '/mail/all')
@@ -169,7 +175,9 @@ export const PATH_DASHBOARD = {
   },
   history: {
     root: path(ROOTS_DASHBOARD, '/history'),
-    banner: path(ROOTS_DASHBOARD, '/history/banner')
+    banner: path(ROOTS_DASHBOARD, '/history/banner'),
+    events: path(ROOTS_DASHBOARD, '/history/events/list'),
+    newEvent: path(ROOTS_DASHBOARD, '/history/events/new')
   },
   faculty: {
     root: path(ROOTS_DASHBOARD, '/faculty'),
@@ -179,6 +187,7 @@ export const PATH_DASHBOARD = {
     root: path(ROOTS_DASHBOARD, '/admission'),
     banner: path(ROOTS_DASHBOARD, '/admission/banner'),
     admissionParas: path(ROOTS_DASHBOARD, '/admission/paras'),
+    factImage: path(ROOTS_DASHBOARD, '/admission/fact-image'),
     facts: path(ROOTS_DASHBOARD, '/admission/facts'),
     first: path(ROOTS_DASHBOARD, '/admission/first'),
     second: path(ROOTS_DASHBOARD, '/admission/second')
@@ -240,14 +249,16 @@ export const PATH_DASHBOARD = {
   summerPrograms: {
     root: path(ROOTS_DASHBOARD, '/summer-programs'),
     banner: path(ROOTS_DASHBOARD, '/summer-programs/banner'),
-    gallery: path(ROOTS_DASHBOARD, '/summer-programs/gallery')
+    courses: path(ROOTS_DASHBOARD, '/summer-programs/courses')
   },
   other: {
     root: path(ROOTS_DASHBOARD, '/other'),
     header: path(ROOTS_DASHBOARD, '/other/header'),
     footer: path(ROOTS_DASHBOARD, '/other/footer'),
-    addPage: path(ROOTS_DASHBOARD, '/other/add-page')
-  }
+    addPage: path(ROOTS_DASHBOARD, '/other/add-page'),
+    listPages: path(ROOTS_DASHBOARD, '/other/list-pages')
+  },
+  vcMessage: path(ROOTS_DASHBOARD, '/vc-message'),
 };
 
 export const PATH_DOCS = 'https://docs-minimals.vercel.app/introduction';

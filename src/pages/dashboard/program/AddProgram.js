@@ -39,8 +39,8 @@ export default function AddProgram() {
             { name: !isEdit ? 'New Program' : slider?.Title }
           ]}
         />
-
-        <AddProgramForm isEdit={isEdit} currentProduct={slider} />
+        {isEdit && slider && <AddProgramForm isEdit={isEdit} currentProduct={slider} />}
+        {!isEdit && <AddProgramForm isEdit={isEdit} currentProduct={slider} />}
       </Container>
     </Page>
   );

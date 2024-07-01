@@ -13,7 +13,7 @@ CommonMoreMenu.propTypes = {
   productName: PropTypes.string
 };
 
-export default function CommonMoreMenu({ onDelete, productName }) {
+export default function CommonMoreMenu({ hideDelete, onDelete, productName }) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,12 +33,14 @@ export default function CommonMoreMenu({ onDelete, productName }) {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem onClick={onDelete} sx={{ color: 'text.secondary' }}>
-          <ListItemIcon>
-            <Icon icon={trash2Outline} width={24} height={24} />
-          </ListItemIcon>
-          <ListItemText primary="Delete" primaryTypographyProps={{ variant: 'body2' }} />
-        </MenuItem>
+        {!hideDelete && (
+          <MenuItem onClick={onDelete} sx={{ color: 'text.secondary' }}>
+            <ListItemIcon>
+              <Icon icon={trash2Outline} width={24} height={24} />
+            </ListItemIcon>
+            <ListItemText primary="Delete" primaryTypographyProps={{ variant: 'body2' }} />
+          </MenuItem>
+        )}
         <MenuItem component={RouterLink} to={`${productName}`} sx={{ color: 'text.secondary' }}>
           <ListItemIcon>
             <Icon icon={editFill} width={24} height={24} />

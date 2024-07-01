@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { Form, FormikProvider, useFormik } from 'formik';
@@ -17,7 +17,9 @@ import {
   FormHelperText,
   FormControlLabel,
   Autocomplete,
-  Chip
+  Chip,
+  Select,
+  MenuItem
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 // utils
@@ -28,6 +30,7 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import Label from '../../Label';
 import { UploadAvatar } from '../../upload';
 import { createUser, updateUser } from '../../../redux/slices/user';
+import { LabelStyle } from '../blog/BlogNewPostForm';
 
 // ----------------------------------------------------------------------
 
@@ -36,21 +39,28 @@ UserNewForm.propTypes = {
   currentUser: PropTypes.object
 };
 
-export default function UserNewForm({ isEdit, currentUser, departments }) {
+export default function UserNewForm({ isEdit, currentUser, departments, campuses }) {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+
+  const [show, setShow] = useState(false);
+
   const NewUserSchema = Yup.object().shape({
     FirstName: Yup.string().required('First Name is required'),
     LastName: Yup.string().required('Last Name is required'),
     EmployeeId: Yup.string().required('Employee ID is required'),
     Designation: Yup.string().required('Designation is required'),
-    OfficeExtension: Yup.string().required('Office Extension is required'),
+    Department: Yup.number().positive('Department is required').required('Department is required'),
+    Campus: Yup.number().positive('Campus is required'),
+    OfficeExtension: Yup.string(),
     Email: Yup.string().required('Email is required').email(),
     CMS_id: Yup.string().required('CMS ID is required'),
     Type: Yup.string().required('Type is required'),
-    Skills: Yup.array().required('Skills are required'),
-    CurrentStatus: Yup.string().required('Current Status is required'),
-    BPS: Yup.number().required('BPS is required')
+    Skills: Yup.array(),
+    CurrentStatus: Yup.string(),
+    BPS: Yup.number().required('BPS is required'),
+    Dean: Yup.boolean(),
+    Faculty: Yup.string(),
   });
 
   const formik = useFormik({
@@ -60,7 +70,9 @@ export default function UserNewForm({ isEdit, currentUser, departments }) {
       LastName: currentUser?.LastName || '',
       EmployeeId: currentUser?.EmployeeId || '',
       Designation: currentUser?.Designation || '',
-      Department: '',
+      Department: currentUser?.Department?.Id || 1,
+      Campus: currentUser?.Campus?.Id || 4,
+      Role: currentUser?.Role || 'USER',
       OfficeExtension: currentUser?.OfficeExtension || '',
       OfficeAddress: currentUser?.OfficeAddress || '',
       CMS_id: currentUser?.CMS_id || '',
@@ -73,45 +85,29 @@ export default function UserNewForm({ isEdit, currentUser, departments }) {
       Biography: currentUser?.Biography || '',
       Message: currentUser?.Message || '',
       CurrentStatus: currentUser?.CurrentStatus || '',
-      BPS: currentUser?.BPS || null
+      BPS: currentUser?.BPS || null,
+      Dean: currentUser?.Dean || false,
+      Faculty: currentUser?.Faculty || 'education',
+      isSubcampus: currentUser?.Campus?.Id ? true : false,
     },
     validationSchema: NewUserSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
+      console.log(values);
+      const copied = { ...values };
+      delete copied.avatarUrl;
       const formData = new FormData();
-      if (values.file) {
-        formData.append('file', values.file);
-      } else {
-        formData.append('Image', currentUser?.Image);
-      }
-
-      const dptId = departments.filter((obj) => obj.Name === values.Department)[0].Id;
-      // skills from array to string
-      let skills = '';
-      values.Skills.forEach((obj, index) => {
-        if (index !== 0) {
-          skills += `,${obj}`;
+      Object.keys(copied).forEach((key) => {
+        if (key === 'Skills') {
+          formData.append(key, values[key].join(','));
         } else {
-          skills += `${obj}`;
+          formData.append(key, values[key]);
         }
       });
-      formData.append('Skills', skills);
-      const copiedObject = { ...values, Department: dptId };
-      delete copiedObject.file;
-      delete copiedObject.avatarUrl;
-      delete copiedObject.Skills;
-      delete copiedObject.isVerified;
 
       try {
         if (!isEdit) {
           dispatch(createUser(formData));
         } else {
-          formData.delete('Message');
-          Object.keys(copiedObject).forEach((key) => {
-            formData.append(key, copiedObject[key]);
-          });
-          Array.from(formData.entries()).forEach((e) => {
-            console.log(e[0], ' : ', e[1]);
-          });
           dispatch(updateUser(currentUser?.Id, formData));
         }
         // resetForm();
@@ -141,14 +137,11 @@ export default function UserNewForm({ isEdit, currentUser, departments }) {
     [setFieldValue]
   );
 
-  useEffect(() => {
-    if (currentUser) {
-      let department = departments?.filter((obj) => obj.Id === currentUser?.Department.Id);
-      department = department ? department[0]?.Name : '';
-      setFieldValue('Department', department);
-    }
-  }, [currentUser, departments]);
 
+  const handleSwitch = (event) => {
+    // setShow(event.target.checked);
+    setFieldValue('Dean', event.target.checked)
+  }
   return (
     <FormikProvider value={formik}>
       <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -197,25 +190,44 @@ export default function UserNewForm({ isEdit, currentUser, departments }) {
                   labelPlacement="start"
                   control={
                     <Switch
-                      onChange={(event) => setFieldValue('status', event.target.checked ? 'banned' : 'active')}
-                      checked={values.status !== 'active'}
+                      onChange={handleSwitch}
+                      checked={values.Dean}
                     />
                   }
                   label={
                     <>
                       <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Banned
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Apply disable account
+                        Dean
                       </Typography>
                     </>
                   }
                   sx={{ mx: 0, mb: 3, width: 1, justifyContent: 'space-between' }}
                 />
               )}
-
-              <FormControlLabel
+              {values.Dean && (
+                <div>
+                  <LabelStyle>Faculty</LabelStyle>
+                  <Select
+                    fullWidth
+                    label="Faculty"
+                    {...getFieldProps('Faculty')}
+                    error={Boolean(touched.Faculty && errors.Faculty)}
+                    helperText={touched.Faculty && errors.Faculty}
+                  >
+                    {[
+                      'Management Science',
+                      'Science and Information Technology',
+                      'Engineering and Technology',
+                      'Education'
+                    ].map((department) => (
+                      <MenuItem key={department} value={department.replace(/\s/g, '-').toLowerCase()}>
+                        {department}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
+              )}
+              {/* <FormControlLabel
                 labelPlacement="start"
                 control={<Switch {...getFieldProps('isVerified')} checked={values.isVerified} />}
                 label={
@@ -229,7 +241,7 @@ export default function UserNewForm({ isEdit, currentUser, departments }) {
                   </>
                 }
                 sx={{ mx: 0, width: 1, justifyContent: 'space-between' }}
-              />
+              /> */}
             </Card>
           </Grid>
 
@@ -362,6 +374,7 @@ export default function UserNewForm({ isEdit, currentUser, departments }) {
                       options={['Teaching', 'Evaluation'].map((option) => option)}
                       renderTags={(value, getTagProps) =>
                         value.map((option, index) => (
+                          option &&
                           <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
                         ))
                       }
@@ -369,25 +382,70 @@ export default function UserNewForm({ isEdit, currentUser, departments }) {
                     />
                   </div>
                 </Stack>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
-                  <TextField
-                    select
+                <Grid item xs={12}>
+                  <LabelStyle>Department</LabelStyle>
+                  <Select
                     fullWidth
                     label="Department"
-                    placeholder="Department"
                     {...getFieldProps('Department')}
-                    SelectProps={{ native: true }}
                     error={Boolean(touched.Department && errors.Department)}
                     helperText={touched.Department && errors.Department}
                   >
-                    <option value="" />
-                    {departments?.map((option) => (
-                      <option key={option.Id} value={option.Name}>
-                        {option.Name}
-                      </option>
+                    {departments?.map((department) => (
+                      <MenuItem key={department.Id} value={department.Id}>
+                        {department.Name}
+                      </MenuItem>
                     ))}
-                  </TextField>
-                </Stack>
+                  </Select>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    labelPlacement="end"
+                    control={<Switch {...getFieldProps('isSubcampus')} checked={values.isSubacampus} />}
+                    label={
+                      <>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Subcampus?
+                        </Typography>
+                      </>
+                    }
+                    sx={{ mx: 0, width: 1 }}
+                  />
+                </Grid>
+                {values.isSubcampus && (
+                  <Grid item xs={12}>
+                    <LabelStyle>Campus</LabelStyle>
+                    <Select
+                      fullWidth
+                      label="Campus"
+                      {...getFieldProps('Campus')}
+                      error={Boolean(touched.Campus && errors.Campus)}
+                      helperText={touched.Campus && errors.Campus}
+                    >
+                      {campuses?.map((campus) => (
+                        <MenuItem key={campus.Id} value={campus.Id}>
+                          {campus.Name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </Grid>
+                )}
+                <Grid item xs={12}>
+                  <LabelStyle>Role</LabelStyle>
+                  <Select
+                    fullWidth
+                    label="Role"
+                    {...getFieldProps('Role')}
+                    error={Boolean(touched.Role && errors.Role)}
+                    helperText={touched.Role && errors.Role}
+                  >
+                    {['ADMIN', 'HOD', 'USER'].map((department) => (
+                      <MenuItem key={department} value={department}>
+                        {department}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </Grid>
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
                   <TextField
                     fullWidth

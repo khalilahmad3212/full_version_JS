@@ -32,7 +32,7 @@ import countries from '../countries';
 export default function AccountGeneral2() {
   const isMountedRef = useIsMountedRef();
   const { enqueueSnackbar } = useSnackbar();
-  const { myUser: currentUser, updateProfile, getProfile } = useAuth();
+  const { user: currentUser, updateProfile, getProfile } = useAuth();
 
   const [edit, setEdit] = useState(false);
 
@@ -41,12 +41,12 @@ export default function AccountGeneral2() {
     LastName: Yup.string().required('Last Name is required'),
     EmployeeId: Yup.string().required('Employee ID is required'),
     Designation: Yup.string().required('Designation is required'),
-    OfficeExtension: Yup.string().required('Office Extension is required'),
+    OfficeExtension: Yup.string(),
     Email: Yup.string().required('Email is required').email(),
     CMS_id: Yup.string().required('CMS ID is required'),
     Type: Yup.string().required('Type is required'),
     Skills: Yup.array().required('Skills are required'),
-    CurrentStatus: Yup.string().required('Current Status is required'),
+    CurrentStatus: Yup.string(),
     BPS: Yup.number().required('BPS is required')
   });
 

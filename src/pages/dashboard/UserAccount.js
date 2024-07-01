@@ -41,26 +41,17 @@ export default function UserAccount() {
   const [currentTab, setCurrentTab] = useState('general');
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCards());
-    dispatch(getAddressBook());
-    dispatch(getInvoices());
-    dispatch(getNotifications());
-    dispatch(getProfile());
-    dispatch(getProfile2());
-  }, [dispatch]);
-
   const ACCOUNT_TABS = [
     {
       value: 'general',
       icon: <Icon icon={roundAccountBox} width={20} height={20} />,
       component: <AccountGeneral2 />
     },
-    {
-      value: 'social_links',
-      icon: <Icon icon={shareFill} width={20} height={20} />,
-      component: <AccountSocialLinks />
-    },
+    // {
+    //   value: 'social_links',
+    //   icon: <Icon icon={shareFill} width={20} height={20} />,
+    //   component: <AccountSocialLinks />
+    // },
     {
       value: 'change_password',
       icon: <Icon icon={roundVpnKey} width={20} height={20} />,

@@ -90,69 +90,6 @@ export default function UpdateHomeAboutForm({ isEdit, currentProduct: currentSli
             </Grid>
 
             <Grid item xs={12}>
-              {/* <Card sx={{ p: 3 }}>
-                <Stack spacing={3}>
-                  <div>
-                    <FormControlLabel
-                      control={<Switch {...getFieldProps('publish')} checked={values.publish} />}
-                      label="Publish"
-                      labelPlacement="start"
-                      sx={{ mb: 1, mx: 0, width: '100%', justifyContent: 'space-between' }}
-                    />
-
-                    <FormControlLabel
-                      control={<Switch {...getFieldProps('comments')} checked={values.comments} />}
-                      label="Enable comments"
-                      labelPlacement="start"
-                      sx={{ mx: 0, width: '100%', justifyContent: 'space-between' }}
-                    />
-                  </div>
-
-                  <Autocomplete
-                    multiple
-                    freeSolo
-                    value={values.tags}
-                    onChange={(event, newValue) => {
-                      setFieldValue('tags', newValue);
-                    }}
-                    options={TAGS_OPTION.map((option) => option)}
-                    renderTags={(value, getTagProps) =>
-                      value.map((option, index) => (
-                        <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
-                      ))
-                    }
-                    renderInput={(params) => <TextField {...params} label="Tags" />}
-                  />
-
-                  <TextField fullWidth label="Meta title" {...getFieldProps('metaTitle')} />
-
-                  <TextField
-                    fullWidth
-                    multiline
-                    minRows={3}
-                    maxRows={5}
-                    label="Meta description"
-                    {...getFieldProps('metaDescription')}
-                  />
-
-                  <Autocomplete
-                    multiple
-                    freeSolo
-                    value={values.tags}
-                    onChange={(event, newValue) => {
-                      setFieldValue('metaKeywords', newValue);
-                    }}
-                    options={TAGS_OPTION.map((option) => option)}
-                    renderTags={(value, getTagProps) =>
-                      value.map((option, index) => (
-                        <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
-                      ))
-                    }
-                    renderInput={(params) => <TextField {...params} label="Meta keywords" />}
-                  />
-                </Stack>
-              </Card> */}
-
               <Stack direction="row" justifyContent="flex-end" sx={{ mt: 3 }}>
                 <LoadingButton type="submit" variant="contained" size="large" loading={isSubmitting}>
                   Save Changes

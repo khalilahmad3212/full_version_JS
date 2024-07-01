@@ -1,8 +1,7 @@
 import { map, filter } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 // utils
-import axios2 from 'axios';
-import axios from '../../utils/axios';
+import axios, { myAxios } from '../../utils/axios';
 
 const SERVER = 'http://localhost:5001';
 // ----------------------------------------------------------------------
@@ -168,7 +167,7 @@ export function getProfile2(userId) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios2.get(`${SERVER}/employee/${userId}`);
+      const response = await myAxios.get(`/employee/${userId}`);
       dispatch(slice.actions.getProfile2Success(response.data));
     } catch (error) {
       console.log('User data error: ', error);
@@ -183,7 +182,11 @@ export function createUser(formData) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios2.post(`${SERVER}/employee`, formData);
+      const response = await myAxios.post(`/employee`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       console.log('user created: ', response);
       dispatch(slice.actions.getProfileSuccess(response.data));
     } catch (error) {
@@ -199,7 +202,7 @@ export function updateUser(userId, formData) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios2.patch(`${SERVER}/employee/${userId}`, formData, {
+      const response = await myAxios.patch(`/employee/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -289,7 +292,7 @@ export function getUserList2() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios2.get(`${SERVER}/employee`);
+      const response = await myAxios.get(`/employee`);
       dispatch(slice.actions.getUserList2Success(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error));

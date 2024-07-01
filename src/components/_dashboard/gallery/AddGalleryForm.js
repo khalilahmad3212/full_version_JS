@@ -1,15 +1,16 @@
 import * as Yup from 'yup';
 import { useSnackbar } from 'notistack';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
-import { Card, Grid, Stack, TextField, Typography, FormHelperText, Autocomplete } from '@mui/material';
+import { Card, Grid, Stack, TextField, Typography, FormHelperText, Autocomplete, Select, MenuItem } from '@mui/material';
 import { useDispatch } from 'react-redux';
 // utils
 import { UploadSingleFile } from '../../upload';
 import { createGallery, updateGallery } from '../../../redux/slices/gallery';
+import { myAxios } from '../../../utils/axios';
 // ----------------------------------------------------------------------
 
 const LabelStyle = styled(Typography)(({ theme }) => ({
@@ -23,6 +24,8 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 export default function AddGalleryForm({ isEdit, currentProduct: currentSlider, page }) {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+
+  const [departments, setDepartments] = useState([]);
 
   const NewBlogSchema = Yup.object({
     Type: Yup.string().required('Type is required'),
@@ -80,6 +83,19 @@ export default function AddGalleryForm({ isEdit, currentProduct: currentSlider, 
     [setFieldValue]
   );
 
+  const getDeaprtmentsList = async () => {
+    try {
+      const { data } = await myAxios.get('/department/list');
+      setDepartments(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getDeaprtmentsList();
+  }, []);
+
   return (
     <>
       <FormikProvider value={formik}>
@@ -112,15 +128,20 @@ export default function AddGalleryForm({ isEdit, currentProduct: currentSlider, 
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
+                    <LabelStyle>Department</LabelStyle>
+                    <Select
                       fullWidth
-                      label="DepartmentId"
-                      multiline
-                      rows={4}
-                      {...formik.getFieldProps('DepartmentId')}
-                      error={Boolean(formik.touched.DepartmentId && formik.errors.DepartmentId)}
-                      helperText={formik.touched.DepartmentId && formik.errors.DepartmentId}
-                    />
+                      label="Department"
+                      {...getFieldProps('DepartmentId')}
+                      error={Boolean(touched.DepartmentId && errors.DepartmentId)}
+                      helperText={touched.DepartmentId && errors.DepartmentId}
+                    >
+                      {departments?.map((department) => (
+                        <MenuItem key={department.Id} value={department.Id}>
+                          {department.Name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Grid>
                 </Grid>
                 <Stack spacing={3}>

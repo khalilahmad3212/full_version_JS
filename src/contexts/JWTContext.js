@@ -1,18 +1,14 @@
 import { createContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 // utils
-import axios2 from 'axios';
-import axios from '../utils/axios';
+import axios, { myAxios } from '../utils/axios';
 import { isValidToken, setSession } from '../utils/jwt';
-
 // ----------------------------------------------------------------------
-const SERVER = 'http://localhost:5001';
 
 const initialState = {
   isAuthenticated: false,
   isInitialized: false,
-  user: null,
-  myUser: null
+  user: null
 };
 
 const handlers = {
@@ -23,15 +19,6 @@ const handlers = {
       isAuthenticated,
       isInitialized: true,
       user
-    };
-  },
-  MYINITIALIZE: (state, action) => {
-    const { isAuthenticated, myUser } = action.payload;
-    return {
-      ...state,
-      isAuthenticated,
-      isInitialized: true,
-      myUser
     };
   },
   LOGIN: (state, action) => {
@@ -81,12 +68,13 @@ function AuthProvider({ children }) {
       try {
         const accessToken = window.localStorage.getItem('accessToken');
 
+        console.log('accessToken: ', accessToken);
+        // alert('accessToken: ' + accessToken);
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
 
-          const response = await axios.get('/api/account/my-account');
+          const response = await myAxios.get('/employee/my-account');
           const { user } = response.data;
-
           dispatch({
             type: 'INITIALIZE',
             payload: {
@@ -119,19 +107,24 @@ function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    const response = await axios.post('/api/account/login', {
-      email,
-      password
-    });
-    const { accessToken, user } = response.data;
 
-    setSession(accessToken);
-    dispatch({
-      type: 'LOGIN',
-      payload: {
-        user
-      }
-    });
+    try {
+      const response = await myAxios.post('/auth/login', {
+        email,
+        password
+      });
+      const { accessToken, user } = response.data;
+
+      window.localStorage.setItem('accessToken', accessToken);
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          user
+        }
+      });
+    } catch (error) {
+      console.log('error: ', error);
+    }
   };
 
   const register = async (email, password, firstName, lastName) => {
@@ -162,24 +155,30 @@ function AuthProvider({ children }) {
   };
   const getProfile = async (userId) => {
     try {
-      const { data } = await axios2.get(`${SERVER}/employee/${userId}`);
-      console.log('user: ', data);
+      const response = await myAxios.get('/employee/my-account');
+      const { user } = response.data;
       dispatch({
-        type: 'MYINITIALIZE',
+        type: 'INITIALIZE',
         payload: {
           isAuthenticated: true,
-          myUser: data
+          user
         }
       });
     } catch (error) {
-      console.log('error: ', error);
-      alert('user not getting');
+      console.error(error);
+      dispatch({
+        type: 'INITIALIZE',
+        payload: {
+          isAuthenticated: false,
+          user: null
+        }
+      });
     }
   };
 
   const updateProfile = async (userId, formData) => {
     try {
-      const response = await axios2.patch(`${SERVER}/employee/profile/${userId}`, formData, {
+      const response = await myAxios.patch(`/employee/profile/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -33,6 +33,11 @@ export default function AdmissionPage() {
       icon: <Icon icon={roundAccountBox} width={20} height={20} />
     },
     {
+      label: 'Fact Image',
+      link: PATH_DASHBOARD.admission.factImage,
+      icon: <Icon icon={roundAccountBox} width={20} height={20} />
+    },
+    {
       label: 'Facts',
       link: PATH_DASHBOARD.admission.facts,
       icon: <Icon icon={roundAccountBox} width={20} height={20} />

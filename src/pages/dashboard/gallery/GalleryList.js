@@ -65,7 +65,7 @@ export default function GalleryList({ data, type }) {
   return (
     <Page title="Ecommerce: Product List | Minimal-UI">
       <Container maxWidth={themeStretch ? false : 'lg'}>
-        <Box py={2} textAlign="end">
+        {/* <Box py={2} textAlign="end">
           <Button
             variant="contained"
             component={RouterLink}
@@ -74,7 +74,7 @@ export default function GalleryList({ data, type }) {
           >
             New Gallery
           </Button>
-        </Box>
+        </Box> */}
         <Card>
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
@@ -102,6 +102,7 @@ export default function GalleryList({ data, type }) {
                         <TableCell align="left">{sentenceCase(Type)}</TableCell>
                         <TableCell align="right">
                           <CommonMoreMenu
+                            hideDelete={true}
                             onDelete={() => handleDeleteProduct(Id)}
                             productName={`${PATH_DASHBOARD.root}/${type}/gallery/${Id}/edit`}
                           />

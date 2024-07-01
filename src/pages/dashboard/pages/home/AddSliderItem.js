@@ -31,16 +31,9 @@ export default function AddSliderItem() {
   return (
     <Page title="Home: New Slider Item | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
-        {/* <HeaderBreadcrumbs
-          heading="Create a new slider item"
-          links={[
-            { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Home', href: PATH_DASHBOARD.home.root },
-            { name: !isEdit ? 'New Slider Item' : slider?.Title }
-          ]}
-        /> */}
-
-        <AddSliderItemForm isEdit={isEdit} currentProduct={slider} />
+        <HeaderBreadcrumbs heading={!isEdit ? 'New Slider' : slider?.Title} />
+        {isEdit && slider && <AddSliderItemForm isEdit={isEdit} currentProduct={slider} />}
+        {!isEdit && <AddSliderItemForm isEdit={isEdit} />}
       </Container>
     </Page>
   );

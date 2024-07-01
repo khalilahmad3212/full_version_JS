@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
 import { useSnackbar } from 'notistack';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
-import { Card, Grid, Stack, TextField, Typography, FormHelperText, Autocomplete } from '@mui/material';
+import { Card, Grid, Stack, TextField, Typography, FormHelperText, Autocomplete, Select, MenuItem } from '@mui/material';
 import { useDispatch } from 'react-redux';
 // utils
 import { UploadSingleFile } from '../../upload';
@@ -24,6 +24,8 @@ export default function AddResourceForm({ isEdit, currentProduct: currentSlider 
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
 
+  const [departments, setDepartments] = useState([]);
+
   const NewBlogSchema = Yup.object({
     // Yup validation lines for Name, ShortName, and LinkLocation
     Name: Yup.string().required('Name is required'),
@@ -34,6 +36,18 @@ export default function AddResourceForm({ isEdit, currentProduct: currentSlider 
     AltText: Yup.string().required('Alt text is required'),
     Image: Yup.mixed()
   });
+
+  const getDeaprtmentsList = async () => {
+    const response = await fetch('http://localhost:5001/department/list');
+    const data = await response.json();
+    console.log('data: ', data);
+    setDepartments(data);
+    return data;
+  };
+
+  useEffect(() => {
+    getDeaprtmentsList();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -48,6 +62,7 @@ export default function AddResourceForm({ isEdit, currentProduct: currentSlider 
     },
     validationSchema: NewBlogSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      console.log('values: ', values);
       const temp = { ...values };
       delete temp.Image;
       const formData = new FormData();
@@ -92,7 +107,7 @@ export default function AddResourceForm({ isEdit, currentProduct: currentSlider 
       <FormikProvider value={formik}>
         <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12}>
               <Card sx={{ p: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -147,7 +162,7 @@ export default function AddResourceForm({ isEdit, currentProduct: currentSlider 
                       helperText={formik.touched.AltText && formik.errors.AltText}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <TextField
                       fullWidth
                       label="DepartmentId"
@@ -157,15 +172,33 @@ export default function AddResourceForm({ isEdit, currentProduct: currentSlider 
                       error={Boolean(formik.touched.DepartmentId && formik.errors.DepartmentId)}
                       helperText={formik.touched.DepartmentId && formik.errors.DepartmentId}
                     />
+                  </Grid> */}
+                  <Grid item xs={12}>
+                    <LabelStyle>Department</LabelStyle>
+                    <Select
+                      fullWidth
+                      label="Department"
+                      {...getFieldProps('DepartmentId')}
+                      error={Boolean(touched.DepartmentId && errors.DepartmentId)}
+                      helperText={touched.DepartmentId && errors.DepartmentId}
+                    >
+                      {departments?.map((department) => (
+                        <MenuItem key={department.Id} value={department.Id}>
+                          {department.Name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Grid>
                 </Grid>
                 {values.Link === 'FILE' && (
-                  <Stack spacing={3}>
+                  <Stack spacing={3} mt={2}>
                     <div>
-                      <LabelStyle>Image</LabelStyle>
+                      <LabelStyle>File</LabelStyle>
                       <UploadSingleFile
-                        maxSize={3145728}
-                        accept="image/*"
+                        // maxSize={3145728}
+                        // maxsize should be 50mb
+                        maxSize={52428800}
+                        // accept="image/*"
                         file={values.Image}
                         onDrop={handleDrop}
                         error={Boolean(touched.Image && errors.Image)}
@@ -181,7 +214,7 @@ export default function AddResourceForm({ isEdit, currentProduct: currentSlider 
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12}>
               <Stack direction="row" justifyContent="flex-end" sx={{ mt: 3 }}>
                 <LoadingButton type="submit" fullWidth variant="contained" size="large" loading={isSubmitting}>
                   {!isEdit ? 'Add Resource' : 'Save Changes'}

@@ -66,10 +66,10 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
         } else {
           dispatch(updateExperience(currentSlider?.Id, temp));
         }
-        // resetForm();
+        resetForm();
         setSubmitting(false);
         enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
-        // navigate(PATH_DASHBOARD.home.root);
+        navigate(PATH_DASHBOARD.experience);
       } catch (error) {
         console.error(error);
         setSubmitting(false);
@@ -85,7 +85,7 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
       <FormikProvider value={formik}>
         <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12}>
               <Card sx={{ p: 3 }}>
                 <Stack spacing={3}>
                   <TextField
@@ -140,70 +140,7 @@ export default function AddExperienceForm({ isEdit, currentProduct: currentSlide
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={4}>
-              {/* <Card sx={{ p: 3 }}>
-                <Stack spacing={3}>
-                  <div>
-                    <FormControlLabel
-                      control={<Switch {...getFieldProps('publish')} checked={values.publish} />}
-                      label="Publish"
-                      labelPlacement="start"
-                      sx={{ mb: 1, mx: 0, width: '100%', justifyContent: 'space-between' }}
-                    />
-
-                    <FormControlLabel
-                      control={<Switch {...getFieldProps('comments')} checked={values.comments} />}
-                      label="Enable comments"
-                      labelPlacement="start"
-                      sx={{ mx: 0, width: '100%', justifyContent: 'space-between' }}
-                    />
-                  </div>
-
-                  <Autocomplete
-                    multiple
-                    freeSolo
-                    value={values.tags}
-                    onChange={(event, newValue) => {
-                      setFieldValue('tags', newValue);
-                    }}
-                    options={TAGS_OPTION.map((option) => option)}
-                    renderTags={(value, getTagProps) =>
-                      value.map((option, index) => (
-                        <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
-                      ))
-                    }
-                    renderInput={(params) => <TextField {...params} label="Tags" />}
-                  />
-
-                  <TextField fullWidth label="Meta title" {...getFieldProps('metaTitle')} />
-
-                  <TextField
-                    fullWidth
-                    multiline
-                    minRows={3}
-                    maxRows={5}
-                    label="Meta description"
-                    {...getFieldProps('metaDescription')}
-                  />
-
-                  <Autocomplete
-                    multiple
-                    freeSolo
-                    value={values.tags}
-                    onChange={(event, newValue) => {
-                      setFieldValue('metaKeywords', newValue);
-                    }}
-                    options={TAGS_OPTION.map((option) => option)}
-                    renderTags={(value, getTagProps) =>
-                      value.map((option, index) => (
-                        <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
-                      ))
-                    }
-                    renderInput={(params) => <TextField {...params} label="Meta keywords" />}
-                  />
-                </Stack>
-              </Card> */}
-
+            <Grid item xs={12}>
               <Stack direction="row" justifyContent="flex-end" sx={{ mt: 3 }}>
                 <LoadingButton type="submit" fullWidth variant="contained" size="large" loading={isSubmitting}>
                   {!isEdit ? 'Add Experience' : 'Save Changes'}

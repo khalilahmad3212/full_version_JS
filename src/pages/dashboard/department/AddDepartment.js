@@ -32,14 +32,15 @@ export default function AddDepartment() {
     <Page title="Home: New Slider Item | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Create a new Publication"
+          heading="Department"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             { name: 'Home', href: PATH_DASHBOARD.home.root },
-            { name: !isEdit ? 'New Publication' : department?.Title }
+            { name: !isEdit ? 'New Department' : department?.Name }
           ]}
         />
-        <AddDepartmentForm isEdit={isEdit} currentProduct={department} />
+        {isEdit && department && <AddDepartmentForm isEdit={isEdit} currentProduct={department} />}
+        {!isEdit && <AddDepartmentForm />}
       </Container>
     </Page>
   );

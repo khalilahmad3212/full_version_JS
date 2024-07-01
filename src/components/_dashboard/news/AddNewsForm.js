@@ -13,6 +13,7 @@ import { UploadSingleFile } from '../../upload';
 import { createNews, updateNews } from '../../../redux/slices/news';
 
 import { PATH_DASHBOARD } from '../../../routes/paths';
+import { useNavigate } from 'react-router';
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +28,7 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 export default function AddNewsForm({ isEdit, currentProduct: currentSlider }) {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const NewBlogSchema = Yup.object({
     Title: Yup.string().required('Title is required').max(100, 'Title can not be longer than 100 characters'),
     // Date: Yup.date().required('Date is required'),
@@ -60,10 +61,10 @@ export default function AddNewsForm({ isEdit, currentProduct: currentSlider }) {
         } else {
           dispatch(updateNews(currentSlider?.Id, formData));
         }
-        // resetForm();
+        resetForm();
         setSubmitting(false);
         enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
-        // navigate(PATH_DASHBOARD.home.root);
+        navigate(PATH_DASHBOARD.news);
       } catch (error) {
         console.error(error);
         setSubmitting(false);
@@ -92,7 +93,7 @@ export default function AddNewsForm({ isEdit, currentProduct: currentSlider }) {
       <FormikProvider value={formik}>
         <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12}>
               <Card sx={{ p: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -171,10 +172,10 @@ export default function AddNewsForm({ isEdit, currentProduct: currentSlider }) {
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12}>
               <Stack direction="row" justifyContent="flex-end" sx={{ mt: 3 }}>
                 <LoadingButton type="submit" fullWidth variant="contained" size="large" loading={isSubmitting}>
-                  {!isEdit ? 'Create Slider' : 'Save Changes'}
+                  {!isEdit ? 'Create News' : 'Save Changes'}
                 </LoadingButton>
               </Stack>
             </Grid>

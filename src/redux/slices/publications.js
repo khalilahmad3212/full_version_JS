@@ -1,6 +1,7 @@
 import { sum, map, filter, uniqBy, reject } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { myAxios } from '../../utils/axios';
 
 const SERVER = 'http://localhost:5001';
 const initialState = {
@@ -88,7 +89,7 @@ export function createPublication(formData) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.post(`${SERVER}/publication`, formData, {
+      const response = await myAxios.post(`/publication`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

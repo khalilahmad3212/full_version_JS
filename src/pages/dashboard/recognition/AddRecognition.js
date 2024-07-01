@@ -39,8 +39,8 @@ export default function AddRecognition() {
             { name: !isEdit ? 'New Recognition' : slider?.Title }
           ]}
         />
-
-        <AddRecognitionForm isEdit={isEdit} currentSlider={slider} />
+        {isEdit && slider && <AddRecognitionForm isEdit={isEdit} currentSlider={slider} />}
+        {!isEdit && <AddRecognitionForm isEdit={isEdit} currentSlider={slider} />}
       </Container>
     </Page>
   );

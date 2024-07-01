@@ -7,6 +7,7 @@ import arrowIosDownwardFill from '@iconify/icons-eva/arrow-ios-downward-fill';
 // material
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, List, Collapse, ListItemText, ListItemIcon, ListSubheader, ListItemButton } from '@mui/material';
+import useAuth from '../hooks/useAuth';
 
 // ----------------------------------------------------------------------
 
@@ -176,17 +177,33 @@ NavSection.propTypes = {
 };
 
 export default function NavSection({ navConfig, isShow = true, ...other }) {
+  const { user } = useAuth();
   return (
     <Box {...other}>
       {navConfig.map((list) => {
-        const { subheader, items } = list;
+        const { subheader, items, role } = list;
         return (
-          <List key={subheader} disablePadding>
-            {isShow && <ListSubheaderStyle>{subheader}</ListSubheaderStyle>}
-            {items.map((item) => (
-              <NavItem key={item.title} item={item} isShow={isShow} />
-            ))}
-          </List>
+          (role === undefined) ?
+            <List key={subheader} disablePadding>
+              {isShow && <ListSubheaderStyle>{subheader}</ListSubheaderStyle>}
+              {items.map((item) => (
+                (item?.role === undefined) ? <NavItem key={item.title} item={item} isShow={isShow} />
+                  :
+                  (item?.role === user.Role) ? <NavItem key={item.title} item={item} isShow={isShow} />
+                    : ""
+              ))}
+            </List>
+            : (role === user.Role) ?
+              <List key={subheader} disablePadding>
+                {isShow && <ListSubheaderStyle>{subheader}</ListSubheaderStyle>}
+                {items.map((item) => (
+                  (item?.role === undefined) ? <NavItem key={item.title} item={item} isShow={isShow} />
+                    :
+                    (item?.role === user.Role) ? <NavItem key={item.title} item={item} isShow={isShow} />
+                      : ""
+                ))}
+              </List>
+              : ""
         );
       })}
     </Box>

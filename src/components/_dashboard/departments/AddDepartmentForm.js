@@ -16,7 +16,9 @@ import {
   Typography,
   Autocomplete,
   FormHelperText,
-  FormControlLabel
+  FormControlLabel,
+  Select,
+  MenuItem
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
@@ -32,6 +34,7 @@ import { UploadSingleFile } from '../../upload';
 // import BlogNewPostPreview from './AddSliderItemPreview';
 import { createMyDepartment, updateMyDepartment } from '../../../redux/slices/my-department';
 import { PATH_DASHBOARD } from '../../../routes/paths';
+import { SERVER } from '../../../utils/constants';
 
 // ----------------------------------------------------------------------
 
@@ -78,7 +81,8 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
     Catagory: Yup.string().required('Catagory is required'),
     Address: Yup.string().required('Address is required'),
     Phone: Yup.string().required('Phone is required'),
-    Image: Yup.mixed().required('Image is required')
+    Image: Yup.mixed().required('Image is required'),
+    Faculty: Yup.string().required('Faculty is required')
   });
 
   const formik = useFormik({
@@ -93,7 +97,8 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
       Catagory: currentSlider?.Catagory || '',
       Address: currentSlider?.Address || '',
       Phone: currentSlider?.Phone || '',
-      Image: isEdit ? `http://localhost:5001/department-images/${currentSlider?.Logo}` : null
+      Faculty: currentSlider?.Faculty || 'education',
+      Image: isEdit ? `${SERVER}/department-images/${currentSlider?.Logo}` : null
     },
     validationSchema: NewBlogSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
@@ -162,6 +167,8 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
                   <TextField
                     fullWidth
                     label="Vision"
+                    multiline
+                    rows={5}
                     {...getFieldProps('Vision')}
                     error={Boolean(touched.Vision && errors.Vision)}
                     helperText={touched.Vision && errors.Vision}
@@ -170,6 +177,8 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
                   <TextField
                     fullWidth
                     label="Mission"
+                    multiline
+                    rows={5}
                     {...getFieldProps('Mission')}
                     error={Boolean(touched.Mission && errors.Mission)}
                     helperText={touched.Mission && errors.Mission}
@@ -186,6 +195,8 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
                   <TextField
                     fullWidth
                     label="History"
+                    multiline
+                    rows={6}
                     {...getFieldProps('History')}
                     error={Boolean(touched.History && errors.History)}
                     helperText={touched.History && errors.History}
@@ -194,11 +205,15 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
                   <TextField
                     fullWidth
                     label="Description"
+                    multiline
+                    rows={5}
                     {...getFieldProps('Description')}
                     error={Boolean(touched.Description && errors.Description)}
                     helperText={touched.Description && errors.Description}
                   />
-
+                  {/* TODO:
+                    - Make it a dropdown as you have added for tags
+                  */}
                   <TextField
                     fullWidth
                     label="Accreditions"
@@ -206,7 +221,7 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
                     error={Boolean(touched.Accreditions && errors.Accreditions)}
                     helperText={touched.Accreditions && errors.Accreditions}
                   />
-
+                  {/* Also make it a dropdown */}
                   <TextField
                     fullWidth
                     label="Catagory"
@@ -218,6 +233,8 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
                   <TextField
                     fullWidth
                     label="Address"
+                    multiline
+                    rows={3}
                     {...getFieldProps('Address')}
                     error={Boolean(touched.Address && errors.Address)}
                     helperText={touched.Address && errors.Address}
@@ -226,10 +243,34 @@ export default function AddDepartmentForm({ isEdit, currentProduct: currentSlide
                   <TextField
                     fullWidth
                     label="Phone"
+                    type="phone"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     {...getFieldProps('Phone')}
                     error={Boolean(touched.Phone && errors.Phone)}
                     helperText={touched.Phone && errors.Phone}
                   />
+
+                  <Grid item xs={12}>
+                    <LabelStyle>Faculty</LabelStyle>
+                    <Select
+                      fullWidth
+                      label="Faculty"
+                      {...getFieldProps('Faculty')}
+                      error={Boolean(touched.Faculty && errors.Faculty)}
+                      helperText={touched.Faculty && errors.Faculty}
+                    >
+                      {[
+                        'Management Science',
+                        'Science and Information Technology',
+                        'Engineering and Technology',
+                        'Education'
+                      ].map((department) => (
+                        <MenuItem key={department} value={department.replace(/\s/g, '-').toLowerCase()}>
+                          {department}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </Grid>
 
                   <div>
                     <LabelStyle>Image</LabelStyle>

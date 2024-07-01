@@ -29,18 +29,18 @@ export default function AddNews() {
     dispatch(getNews(id));
   }, [dispatch]);
   return (
-    <Page title="Home: New Slider Item | Sukkur IBA">
+    <Page title="Home: News | Sukkur IBA">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Add New News"
+          heading="News"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Home', href: PATH_DASHBOARD.home.root },
+            { name: 'News', href: PATH_DASHBOARD.home.root },
             { name: !isEdit ? 'New News' : slider?.Title }
           ]}
         />
-
-        <AddNewsForm isEdit={isEdit} currentProduct={slider} />
+        {isEdit && slider && <AddNewsForm isEdit={isEdit} currentProduct={slider} />}
+        {!isEdit && <AddNewsForm isEdit={isEdit} />}
       </Container>
     </Page>
   );
